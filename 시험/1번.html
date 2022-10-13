@@ -1,0 +1,59 @@
+<!-- 벽타기를 너무 좋아해 하루 종일 벽만 타는 예쁘고 더 더 예쁜 블랙핑크 로제가 있습니다.
+    이런 로제가 걱정된 제니는 로제가 다른 취미를 가지게 하려고 벽에 참기름을 발랐습니다.
+    참기름을 바른 결과 로제는 처음 1초동안은 3cm를 오르지만 다음 1초동안은 2cm를 
+    미끄러지는 걸 반복하게 되었습니다.
+    곧 +3cm,-2cm,+3cm,-2cm,+3cm,-2cm 식으로 벽을 오르게 되었습니다.
+    
+    시간값(초단위)을 파라미터(매개변수)로 받아서 그 시간에 로제가 올라간 거리를 리턴하는
+    함수와 거리를 파라미터(매개변수)로 받아서 해당거리를 가는데 필요한 시간을
+    리턴하는 함수를 각각 작성하시오
+    편의상 만약 결과값이 2개인 경우(거리를 받아서 시간을 리턴) 최초값을
+    리턴하는 것으로 합니다. -->
+    
+    <!-- 힌트 
+    문3: jQuery 곧 배우는데, css 선택자를 잘 모르면 어려워짐
+    문4: div태그이용 height 속성 늘려가면서, display 사용
+    문5: 하트만들기 확인, overflow사용, 동그라미는 border-radius 사용
+    문6: createElement("div")이용, height 속성 및 background-color 이용 -->
+    
+ <!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    function f_sum(p_num){
+        var sum = 0;
+        for(var i=0; i<p_num; i++){  
+            if(i%2 == 0){
+                sum += 3;  //+3, -2를 해야하는 경우로 나누어야함
+            }
+            if(i%2 == 1){
+                sum -= 2;
+            }
+            console.log(sum);
+        }
+         return sum;
+    }
+    // 시간을 매개변수로 받아서 올라간 거리를 리턴하는 함수
+    function f_retDistance(p_sec){
+            return f_sum(p_sec)  + "cm를 올라갔습니다.";
+    }
+
+    // 거리를 매개변수로 받아서, 그 만큼 올라가는 데 걸리는 시간을 리턴하는 함수
+    function f_retSeconds(p_dist){
+            for(var i=0; i<100; i++){
+                if(p_dist == f_sum(i)){
+                    break;
+                }
+            }
+        return i + "초 시간이 걸립니다.";
+        // 선생님 풀이 방식
+        // var p_sec=1;
+        // for(;"언제 같아지지?";){
+        //     if(p_dist == f_sum(p_sec)){
+        //         return p_sec;
+        //     }
+        // }
+        
+    }
+    alert(f_retDistance(3));    // 3초동안 올라간 거리
+    alert(f_retSeconds(10));    // 10cm 올라가는데 걸리는 초
+</script>

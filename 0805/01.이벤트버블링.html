@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    div{ 
+        position: relative;
+        border: 2px solid black;
+    }
+    #mom{
+      left: 30px; top: 30px;  
+    }
+    #na{
+        left: 10px; top: 10px;   
+    }
+</style>
+</head>
+<body>
+    <div onclick="f_hal()" id="halmoney" style="width: 300px; height: 300px">
+        할머니
+        <div onclick="f_mom()" id="mom" style="width: 200px; height: 200px">
+            엄마
+            <div onclick="f_na()" id="na" style="width: 100px; height: 100px">
+                나
+            </div>
+        </div>
+    </div>
+<script>
+    // 이벤트 버블링이 Default인 것이 짜증남 
+    // => stopPropagation을 안해주면 부모이벤트도 적용됨
+    function f_hal(){
+        alert("노발대발");
+    }
+    function f_mom(){
+        event.stopPropagation(); 
+        alert("엄마는 외계인");
+    }
+    function f_na(){
+        event.stopPropagation(); // 이벤트 capturing
+        alert("야호 내일 토요일!!!!!!!");
+    }
+</script>
+</body>
+</html>

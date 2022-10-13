@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    var v_datas = [
+        {
+            "name": "승훈",
+            "birth" : "2021-01-01",
+            "skill" : "javarscript"
+        },
+        {
+            "name": "하용",
+            "birth" : "2020-08-08",
+            "skill" : "angular"
+        },
+        {
+            "name": "연수",
+            "birth" : "1960-11-11",
+            "skill" : "oracle"
+        },
+        {
+            "name": "재경",
+            "birth" : "1999-12-25",
+            "skill" : "viewjs"
+        },
+        {
+            "name": "종환",
+            "birth" : "2012-07-07",
+            "skill" : "all"
+        }
+    ];
+// name으로 정렬해서 출력하시오
+    v_datas.sort(function(a,b) {
+        console.log("a, b => ", a.name, b.name);
+        if(a.name >= b.name){
+            return -1;
+        }
+        return 1;
+    });
+    console.log(v_datas);
+        
+// birth으로 정렬해서 출력하시오
+    // v_datas.sort(function(a,b) {
+    //     console.log("a, b => ", a.birth, b.birth);
+    //     if(a.birth >= b.birth){
+    //         return 1;
+    //     }
+    //     return -1;
+    // });
+    // console.log(v_datas);
+
+    v_datas.sort(function(a,b) {
+        console.log("a, b => ", a.birth, b.birth);
+        // -만 빼면 숫자로 변환될 수 있는 데이터라 아래처럼 처리하는 것이 유리
+        a.birth.replaceAll("-","") - b.birth.replaceAll("-","")
+    });
+    console.log(v_datas);
+// skill로 정렬해서 출력하시오
+    v_datas.sort(function(a,b) {
+        if(a.skill >= b.skill){
+            return 1;
+        }
+        return -1;
+    });
+    console.log(v_datas);
+</script>

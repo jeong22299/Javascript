@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <!-- input type=file은 브라우져마다 모양이 다름 완전 짜증
+         모양을 똑같이 만들어오라고 지랄
+    -->
+    <button id="sy">파일찾기</button>
+    <input type="file" id="surinam" value="" style="display:none">
+    <div id="disp"></div>
+    
+    <table id="mytbl" border="1">
+        <tbody class="jobumo">
+            <tr>
+                <td>1</td>
+                <td>김연수</td>
+                <td>흥</td>
+            </tr>
+            <tr id="smj">
+                <td>2</td>
+                <td>안하용</td>
+                <td>치</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>최승훈</td>
+                <td>피</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td id="start">성민정</td>
+                <td>자</td>
+            </tr>
+        </tbody>
+    </table>
+<script>
+    //closest : 부모-> 부모-> 부모로(본인포함) 찾아감,형제는 찾지 않음
+    // 찾기시작위치에 자신도 포함됨
+    // console.log($("#start").closest("#smj").html());
+    // console.log($("#start").closest("td").html());
+    // $("#start").closest("tbody").children().eq(0).children().eq(1).html("김연수바보");
+
+
+    // $("#sy").on("click",function(){
+    //     $("#surinam").trigger("click");
+    // });
+
+    $("#disp").append($("table").clone(true));  // deep복사 원래 cloneNode(true)
+</script>
+</body>
+</html>

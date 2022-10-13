@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="./gesilib.js"></script>
+</head>
+<body>
+<h1>볼품없는 게시판 읽기</h1>
+<form id="id_rform" action="update_action.html" method="get">
+    <input type="hidden" name="nm_gnum" value="">
+    <table border="1">
+            <tr>
+                <td>글제목</td>
+                <td><input type="text" name="nm_title" value="" required></td>
+            </tr>
+            <tr>
+                <td>글쓴이</td>
+                <!--굳이 사용자에게 보여 줄 필요는 없는데 프로그램적으로 필요한 값을 폼 안에 숨겨서 보낼 때 사용, 그저 안 보이는 텍스트 박스-->
+                <td><input type="text" name="nm_writer" value="" disabled></td>
+                <!--!!!!!!readonly는 사용자가 수정불가 disabled 창 자체가 수정불가로 보임 차이점은 readonly는 서버에 전송되지만 disabled은 안됨-->
+            </tr>
+            <tr>
+                <td>글쓴이 레벨</td>
+                <td>
+                    <select name="nm_level">
+                        <option value="chunjae" selected>천재</option>
+                        <option value="sujae">수재</option>
+                        <option value="youngjae">영재</option>
+                        <option value="roze">로제</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>카테고리</td>
+                <td>
+                    JS<input type="checkbox" name="nm_cat" value="js">
+                    HTML<input type="checkbox" name="nm_cat" value="html">
+                    CSS<input type="checkbox" name="nm_cat" value="css">
+                    JSP<input type="checkbox" name="nm_cat" value="jsp">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    내용<br>
+                    <textarea name="nm_content" rows="10" cols="50" required></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"> 
+                <input type="submit" value="수정">
+                <input type="button" value="삭제" id = "id_del">
+                </td>
+            </tr>
+    </table>
+</form>
+<script>
+    var v_form = document.querySelector("#id_rform");
+    var v_delBtn = document.querySelector("#id_del");
+    function f_del(){
+        v_form.action ="delete_action.html";
+        v_form.submit(); // 폼 전송
+    }
+    v_delBtn.addEventListener("click",f_del);
+    var v_titleText = v_form.nm_title;
+    var v_writerText = v_form.nm_writer;
+    var v_contentText = v_form.nm_content;
+    var v_levelSelect = v_form.nm_level;
+    // var v_ckBoxs = document.querySelectorAll("#nm_cat")
+    
+
+// alert(v_ckBoxs);
+    // 주소표시줄에서 글 넘버 잡아오기
+    var v_gnum = request.getParameter("gnum");
+
+    //번호에 해당하는 글을 localstorage에서 찾아야함
+    var v_dataArr = JSON.parse(localStorage.getItem(v_tblName));
+    var v_schGul;   //찾은 글을 연결 시킬 변수
+    for(var i =0; i<v_dataArr.length; i++){
+        if(v_dataArr[i].pid == v_gnum){ //일치하는 글을 찾았다면
+            v_schGul = v_dataArr[i];
+            break;                      //더 찾을 필요없음
+        }
+    }
+    
+    // 연봉 올리는 코딩! 
+    var v_ckVals = v_schGul.cats;
+    for(var i = 0; i<v_ckVals.length; i++){
+        document.querySelector("input[value= "+ v_ckVals[i]+"]").checked = true;
+    }
+  
+    // 찾았으니 해당 값을 화면에 표시
+    v_titleText.value = v_schGul.title;
+    v_writerText.value = v_schGul.writer;
+    v_contentText.value = v_schGul.content;
+    v_levelSelect.value = v_schGul.level; // select의 value의 값을 주면, option의 같은 value값이 자동으로 선택됨
+    v_form.nm_gnum.value = v_gnum;
+    
+    /*
+    var v_ckboxs = document.querySelectorAll("input[type=checkbox]");
+    var v_ckVals = v_schGul.cats;
+    for( var i =0; i<v_ckVals.length; i++ ){
+        for(var j =0; j<v_ckboxs.length; j++ ){
+            if(v_ckboxs[j].value == v_ckVals[j]){
+                v_ckboxs[j].checked = true;     // 강제 체크
+                break;  //체크박스 value값을 다 다르게 주었기 때문에 필요
+            }
+        }
+    }
+    */
+   //  v_ckBoxs =  document.querySelector("input[name='nm_cat']:checked");
+
+</script>
+</body>
+</html>

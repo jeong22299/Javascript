@@ -1,0 +1,47 @@
+<!-- 문4: div태그이용 height 속성 늘려가면서, display 사용 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #id_curtain{
+        width: 400px;
+        border: 10px groove pink;
+
+    }
+    #id_content{
+        display: none;
+        color: yellow;
+        background-color: black;
+    }
+</style>
+</head>
+<body>
+    <div id="id_curtain">
+        <div id="id_content">
+            내용필요 처음에는 안보임
+        </div>
+    </div>
+<script>
+    var v_curtain = document.querySelector("#id_curtain");
+    var v_ex = 10;
+    function f_show(){
+        // 태그내에 height 속성이 정의가 안 되어 있다면, 강제 초기값
+        // function 밖에 있으면 더 좋음(상황에 의존)
+        if(!v_curtain.style.height){
+            v_curtain.style.height = "10px";
+        }
+        v_curtain.style.height = parseInt(v_curtain.style.height) + v_ex + "px"
+        // 재귀호출로 인해 무한 루핑이니, 종료 조건필요(여기선 특정 height값!)
+        if(parseInt(v_curtain.style.height) >= 300) {
+            document.querySelector("#id_content").style.display="block";
+            return;
+        }
+        setTimeout(f_show,100);
+    }
+    window.onload = f_show;
+</script>
+</body>
+</html>

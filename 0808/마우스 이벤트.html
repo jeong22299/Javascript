@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #id_disp {
+        width:80%;
+        height:70vh;
+        border:1px solid black;
+    }
+</style>
+</head>
+<body>
+    <h1>마우스 이벤토</h1>
+<!--     <div id="id_disp" onmousedown="f_down()" oncontextmenu="return f_contextmenu()" ></div>
+ -->
+ <div id="id_disp" onmousedown="f_down()" onmouseup="f_up()"    oncontextmenu="return false"></div>
+   <script>
+    function f_up(){
+        alert("눌렀던 버튼을 놓으셨어용용");
+    }
+
+    // contextmenu 못나오겡
+    function f_contextmenu(){
+        return false;
+    }
+
+    var v_disp = document.querySelector("#id_disp");
+/*
+    v_disp.addEventListener("contextmenu",function(){
+        event.preventDefault(); //원래 장착된 기능 막기
+    });
+*/
+
+    function f_down(){
+       // alert(event.button); // 어느 버튼을 눌렀을깡? 0,1,2
+       //alert(event.which);     // 이것도 어느 버튼을 눌렀을깡? 1,2,3
+       if(event.button == 0){
+        v_disp.innerHTML="<h1>왼쪽 눌렀지용</h1>";
+        return; 
+       }
+       if(event.button == 1){
+        v_disp.innerHTML="<h1>가운데 눌렀지용</h1>";
+        return; 
+       }
+       if(event.button == 2){
+        v_disp.innerHTML="<h1>오른쪼옥 눌렀지용</h1>";
+        return; 
+       }
+    }
+</script>    
+</body>
+</html>

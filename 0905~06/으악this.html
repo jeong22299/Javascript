@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    var v_obj = {};
+    v_obj.aaa ="aaa"; // 속성/ 메소드를 추가할 땐 원하는 이름 마음대로(키워드만 아니라면)
+    v_obj.bbb = "bbb";
+
+    delete v_obj.aaa;   // 속성/메소드 지우고 확인
+    console.log(v_obj);
+
+    function f_this() {
+        console.log(this);  // window
+    }
+    window.f_this();
+    var v_hjh = {"name": "허지현", "point":"신반장"};  // 객체 생성
+    v_hjh.merong= f_this;
+    // merong은 f_this를 참조, 곧 같은 곳을 가리키는 값, merong부르면 f_this
+    v_hjh.merong();
+    
+    var v_roze = {"name": "으악로제"}
+    f_this.call(v_roze);   // this -> v_roze 가리키도록 강제 세팅
+    // call, apply, bind를 쓰면 this값을 쫒아다니지 않고 원하는 값으로
+    // 강제 세팅할 수 있어서 완전 편함
+</script>

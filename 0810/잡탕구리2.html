@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #wrapper {
+        width: 200px;
+        height: 200px;
+        border: 3px solid pink;
+    }
+</style>
+</head>
+<body>
+    <table border="1">
+        <tbody>
+            <tr>
+                <td>이름<input type="text" tabindex="1" value=""></td>
+                <td>별명<input type="text" tabindex="4" value=""></td>
+            </tr>
+            <tr>
+                <!-- -1은 focus를 안 준다.-->
+                <td>나이<input type="text" tabindex="-1" value=""></td>
+                <td>주소<input type="text" tabindex="5" value=""></td>
+            </tr>
+            <tr>
+                <td>노인<input type="text" tabindex="3" autofocus title="노발대발" value=""></td>
+                <td>안노<input type="text" tabindex="6" value=""></td>
+            </tr>
+        </tbody>
+    </table>
+    <!--focus를 받을 수 없는 element에 focus를 받을 수 있게 함-->
+    <div id="wrapper" tabindex="0" contenteditable="" onkeydown = "f_keydown()" >
+        전 편집이 안될까요, 저도 텍스트박스처럼 사용되고 싶어요
+    </div>    
+<script>
+    function f_keydown(){
+        // alert(event.keyCode + " : " + event.key);
+    }
+</script>
+</body>
+</html>

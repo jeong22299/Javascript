@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<body>
+    <div id="disp"></div>
+</body>
+<script>
+    // Promise가 나왔지만, 여전히 비동기처리 단계가 많아지면 어쩔 수 없이
+    // 코드가 복잡해지고 가독성이 떨어지는 문제는 여전히 남아있어 불만이 
+    // 잔재하였는데, async, await -> Promise 베이스
+    // 나와서 엄청 칭찬을 받게 됨
+    // 조금 시간이 걸리니가, 외면하지 말고 Promise, async, await 써보는 걸로
+    
+    const axios = {};  // 네임스페이스용(액시오스라고 읽음)
+    axios.get = function(p_url){
+        return new Promise((res, rej)=>{
+            let ajax = new XMLHttpRequest();
+            ajax.open("get", p_url, true);
+            ajax.onreadystatechange = ()=>{
+                if(ajax.readyState == 4 && ajax.status == 200){
+                    // 성공했을 때 처리(res/resolve)
+                    res(ajax.responseText);
+                }
+            }
+            ajax.send();
+        });
+    }
+    // async와 await는 세트로
+    async function f_good(){
+        let response = await axios.get("mystyle.css")
+        document.querySelector("#disp").innerHTML = response;
+    }
+
+    f_good();
+
+
+</script>
+

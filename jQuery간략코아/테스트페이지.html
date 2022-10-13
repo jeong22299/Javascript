@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="./myQuery.js"></script>
+</head>
+<body>
+    <input type="text" name="안메롱" id="아이디" value="메롱받고 메롱 더">
+    <input type="text" name="안메롱1" id="아이디1" value="메롱받고 메롱 더1">
+    <input type="text" name="안메롱2" id="아이디2" value="메롱받고 메롱 더2">
+    <div id="dv1" class="blackpink">하이루 로제</div>
+    <div id="dv2" class="blackpink">하이루 제니</div>
+    <div id="dv3" class="blackpink">하이루 리사</div>
+    <div id="dv4" class="blackpink">하이루 지수</div>
+<script>
+
+    console.log($(".blackpink").html().substring(2));
+
+    /*
+    $(".blackpink").attr("class","bangtan")
+                   .html(function(p_inx, p_str){
+                        if(p_inx == 1) return "뷔와 제니";
+                        return p_str;   // 원래 문자열
+                   })
+                   .html(function(p_inx, p_str){
+                        if(p_inx == 0) return p_str + "만만세";
+                        return p_attr;
+                   })
+                   .attr("id", function(p_inx, p_attr){
+                        if(p_inx == 3) return "merong";
+                        return p_attr;
+                   });
+    */
+    // alert($("input[name=안메롱1]").attr("id"));
+    // $("intput").attr("tpye", "checkBox");
+
+    // $("input").attr("type", function(p_index, p_attr){
+    //     console.log("인덱스 : 속성값 ", p_index,p_attr)
+    //     if(p_index == 1){
+    //         return "checkBox";
+    //     }
+    //     return p_attr;  // this[p_attr];
+    // });
+
+    // $("input").attr("type", "radio");
+    // $("input").attr("vlaue", "졸려");
+    
+    /* 특별한 for문 => for in
+    var v_samObj = {
+        "mem1":"roze",
+        "mem2":"jenni",
+        "mem3":"risa",
+        "mem4":"지수필요없음"
+    }
+
+    for(var v_attr in v_samObj){
+        alert(v_attr + " : " + v_samObj[v_attr]);
+    }
+    */
+    /*
+    $("input").attr({
+        "type":"radio",
+        "value":"졸려"
+    })
+    */
+
+</script>
+</body>
+</html>

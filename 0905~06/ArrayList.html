@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    // java의 ArrayList는 js의 배열에 해당
+    // 생성자
+    var java = {};  // 네임스페이스용
+    java.util = {}; // 네임스페이스용
+    
+    java.util.ArrayList = function(){
+        this.length = 0;  // 생성될 때 갯수 0
+        return this; 
+        // function키워드가 class로 사용되고 있다는 의미(100%는 아님, 거의 대부분)
+    }
+
+    // 메서드 추가, prototype은 그저 메모리 절약을 위한 것이니 신경안서도 됨.
+    java.util.ArrayList.prototype.add = function(p_arg) {
+        this[this.length] = p_arg;
+        this.length++;
+        return this;  // 메소드 chainning을 위함
+        // return  // 메소드는 일반함수라서 return이 생략되어 있음
+    }
+
+    java.util.ArrayList.prototype.get = function(p_inx) {
+        return this[p_inx];
+    }
+
+    java.util.ArrayList.prototype.remove = function(p_inx) {
+        // 인덱스번호를 순서대로 잘 나오도록 작성
+        for(var i=p_inx; i<this.length; i++) {
+            this[i] = this[i+1]; //왼쪽으로 한개씩 땡기고
+        }
+        delete this[this.length-1];  // 마지막거 지우기
+
+        // 객체 속성 지울 때 사용했던 키워드? delete
+        // delete this[p_inx];
+        this.length--;   // length값도 변경
+        return this;    // 메소드 체인닝을 위함
+    }
+
+    // 실제 사용
+    var j_arrList = new java.util.ArrayList();
+    j_arrList.add("하용").add("승훈").add("연수").add("승연")
+             .add("배신").add("민정").add("준혁").remove(6);
+    console.log("mmorpg",j_arrList);
+    /*
+    j_arrList.add("승훈");
+    j_arrList.add("연수").remove(1);
+    j_arrList.add("승연");
+    j_arrList.add("배신");
+    j_arrList.add("민정");
+    */
+
+    console.log("check1: ",j_arrList.get(1)); // 누르고 확인!!
+    j_arrList.remove(1);
+    j_arrList.remove(4);
+    console.log("check2: ",j_arrList);
+
+</script>

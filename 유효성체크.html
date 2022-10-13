@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>유효성체크</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <form action="" onsubmit="return f_submit()">
+        아이디 <input type="text" name="nm_id" value="" pattern="^[a-zA-Z0-9]{5, 12}$" required><br>
+        전화번호 <input type="text" name="nm_tel" value="" pattern="[0-9]{3}-[0-9]{3,4}-[0-9]{4}" required><br>
+        취미 2개이상 선택
+        js<input type="checkbox" name="n_hobby" value="js">&nbsp;
+        jsp<input type="checkbox" name="n_hobby" value="jsp">&nbsp;
+        servlet<input type="checkbox" name="n_hobby" value="servlet">&nbsp;
+        merong<input type="checkbox" name="n_hobby" value="merong">
+        <input type="submit" value="전송">
+        <input type="">
+    </form>
+<script>
+    // psyudo class
+    function f_submit() {
+        alert($("input[name=n_hobby]:checked").length);
+        return false;  // 전송 안함!!!!!!!!!!!!!!!!
+    }
+</script>
+</body>
+</html>

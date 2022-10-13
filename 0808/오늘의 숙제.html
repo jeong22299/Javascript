@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+        #dongmin {
+            position:absolute;
+            width:100px;
+            height:100px;
+            border:5px solid pink;
+        }
+</style>
+</head>
+<body>
+    <div id="dongmin" onmousedown="f_mdown()"
+                      onmouseup="f_mup()" 
+                      onmousemove="f_mmove()"
+                      onmouseout="f_mup()"></div>
+<script>
+    var v_dongmin = document.querySelector("#dongmin");
+    var v_nuller = false;   // 현재 마우스 버튼 안 눌린 상태
+    v_dongmin.style.left = "10px"; // 임의로 초기값
+    v_dongmin.style.top = "10px";
+    var v_dongLeft, v_dongTop;
+    var v_mouseLeft, v_mouseTop;
+    function f_mdown(){
+        // 왼쪽 버튼 누른 순간에 값이 필요
+        if(!event.button){
+            v_dongLeft = parseInt(v_dongmin.style.left);
+            v_dongTop = parseInt(v_dongmin.style.top);
+            v_mouseLeft = event.clientX;
+            v_mouseTop = event.clientY;
+
+            v_nuller = true;    // 눌린 상태 표현
+        }
+    }
+    function f_mup(){
+        v_nuller = false;   // 누른 버튼 놓으면 안 눌린 상태
+    }
+    function f_mmove(){
+        if(v_nuller){// 왼쪽 버튼을 누르고 있을 때만
+            var v_mvX = event.clientX - v_mouseLeft; // 마우스가 X축으로 움직임
+            var v_mvY = event.clientY - v_mouseTop; // 마우스가 Y축으로 움직임
+
+            v_dongmin.style.left = v_dongLeft + v_mvX + "px";
+            v_dongmin.style.top = v_dongTop + v_mvX + "px";
+
+            // v_dongmin.style.left = event.clientX + "px";
+            // v_dongmin.style.top = event.clientY + "px";
+            // console.log("마우스X",event.clientX);
+            // console.log("마우스Y",event.clientY);
+        }
+    }
+
+
+</script> 
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // == vs ===    약한비교 vs 강한비교
+
+        if([] === []){  // 객체는 값이 같을지라도 존재감이 다름
+            alert("이건 뜨나용 타입이 같은데");
+        }
+
+        if("123" == 123){   // loose compare(약한비교, 형변환이 발생)
+            alert("오잉?");
+        }
+
+        if("123" === 123){  // strict compare(강한비교, 형변환이 안 일어남)
+            alert("안오잉?");
+        }
+    </script>
+</body>
+</html>

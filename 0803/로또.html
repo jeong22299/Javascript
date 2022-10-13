@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<script src="../js/mylib.js"></script>
+</head>
+<body>
+    <h1>로또번호 만들기, 중복체크 로직은 아주 중요</h1>
+    <input type="button" value="번호 생성" onclick="f_lotto()">
+    <div id="id_disp" style="border: 1px solid pink"></div>
+<script>
+    var v_disp = document.querySelector('#id_disp');
+    // 중복을 싫어해!!!!
+    // 처음 결과를 얻기위해 짠 내용을 다시 깔끔하게 정리하는 것을 Refactoring이라고 함
+    // 실제로는 정리하는 중에 코드가 더 깔끔해지고,
+    // 성능이 좋아지는 부분이 있어서 refactoring이라고 부름
+    function f_repeat(p_arr, p_val) {
+        for(var i=0; i<p_arr.length; i++){ 
+            if(p_arr[i] == p_val){
+                return true;  // 같은 것이 있음
+            }
+        }
+        return false;   // 같은 것이 없음
+        // refactoring을 시도했더니, 의외로 소스가 더 간단해짐 
+    }
+
+    function f_lotto() {
+        var v_lottoNums =[];    // 로또번호를 담을 배열
+        for(;"몇번만에 6개가 될지 알 수 없다.";){ // 무한루프
+            var v_ranNum = f_ranNum(1, 45);
+            
+    //         // 중복된 번호가 배열에 있으면 true, 없으면 false
+    //         // 개별 비교가 아닌 전체 루프 뒤에 넣을지 안 넣을지를 결정해야함
+    //         var v_isExist = false;  // 없다고 가정 -> 아주 중요!!
+    //         for(var i=0;i<v_lottoNums.length;i++){  // => 중복체크 로직
+    //             if(v_lottoNums[i] == v_ranNum){
+    //                 v_isExist = true; // 없다고 가정했는데 있음
+    //                 break;  // 더 돌 필요가 없음
+    //             }
+    //         }
+    //         // 이제 넣을지 안 넣을지 결정
+    //         if(!v_isExist){
+    //             v_lottoNums.push(v_ranNum);
+    //         }
+        if(!f_repeat(v_lottoNums,v_ranNum)){
+            v_lottoNums.push(v_ranNum);
+        }
+            // 무한루프는 항상 빠져나갈 조건을 생각하고 정의
+            if(v_lottoNums.length == 6){
+                v_disp.innerHTML += "<h1>"+v_lottoNums+"</h1>"; //출력
+                break;
+            }
+        }
+    }
+</script>
+</body>
+</html>

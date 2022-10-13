@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // sequence(순서 엄청 중요) 한 줄씩 해석됨!
+        window.onload = function(){
+
+            alert(document.querySelector("#btn2").innerHTML);
+        }
+    </script>
+    <button id="btn1">눌러</button>
+    <button id="btn2">눌러!!</button>
+    <script>
+    btn1.onclick = function(){
+        alert("메롱");
+    }
+    // 위에 것을 덮어쓰게됨
+    var v_check =1;
+    btn1.onclick = function(){
+        // 보통 자주 불리는(1번) 함수안에 addEventListener를
+        // 사용하면 원하지 않게여러번 실행되는 것을 확인 할 수 있음
+        // 꼭 잘 구분해서 쓸 것!!
+        btn2.addEventListener("click", function(){
+            alert("완전메롱" + v_check);
+        });
+        v_check++;
+    }
+    
+</script>
+</body>
+</html>

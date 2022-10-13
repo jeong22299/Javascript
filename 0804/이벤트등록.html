@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    div{
+        border: 1px solid mediumslateblue;
+    }
+</style>
+</head>
+<body>
+    <div id="wrapper" onclick="f_what()">
+        <div class="aaa">성민경</div>    
+        <div class="aaa">성민창</div>    
+        <div class="aaa">성민정</div>    
+        <div class="aaa">성민표</div>    
+    </div>
+<script>
+    function f_what() {
+        alert("뭐야!!!!! 이 자식아!!!!!!!");
+    }
+
+    // class=aaa 인 것 모두에게 이벤트 등록하기
+    var v_aaas = document.querySelectorAll(".aaa");
+    for(var i=0; i<v_aaas.length; i++){
+        v_aaas[i].addEventListener("click", function(){
+            alert("누르셨어용?");
+        });
+    }
+    // 기존 것을 지우지 않고, 필요한 것만 추가해야 이벤트가 살아있음
+    var v_div= document.createElement("div");
+    v_div.innerHTML = "<div class='aaa'>윤다영</div>";
+    document.querySelector("#wrapper").appendChild(v_div);
+
+    // 아래처럼 하면 기존 것을 지우고 다시 쓰기때문에 이벤트가 안먹음.
+    // document.querySelector("#wrapper").innerHTML += "<div class='aaa'>윤다영</div>";
+
+</script>
+</body>
+</html>

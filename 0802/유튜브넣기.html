@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 구글의 정책이 동영상의 사운드는 사용자에게 불편을 줄 수 있다해서
+         영상 자동플레이를 하려면 사운드를 꺼야함, 사운드 켜는건 사용자 선택!! -->
+    <h1>유투브 넣자</h1>  
+    <input type="button" value="다음영상" onclick="f_next()"><br>
+    선택하시오<br>
+    로제1<input type="radio" name="nm_roze" value="" onclick="f_sel(0)">
+    로제2<input type="radio" name="nm_roze" value="" onclick="f_sel(1)">
+    로제3<input type="radio" name="nm_roze" value="" onclick="f_sel(2)">
+    로제4<input type="radio" name="nm_roze" value="" onclick="f_sel(3)">
+   
+    <select id="id_sel" onchange="f_sel2()"> 
+        <option value="-1" selected> 원하는 영상 선택하세요</option>
+        <option value="0">로제1</option>
+        <option value="1">로제2</option>
+        <option value="2">로제3</option>
+        <option value="3">로제4</option>
+    </select>
+<script>
+    // 
+    function f_sel2(){
+        if(v_select.value == -1){
+            alert("선택하세요");
+            return; // 함수 종료
+        }
+        // alert(v_select.value);  //? multiple 아닌 경우는 아주 간단
+        v_iframe.src= v_preUrl + v_mvList[v_select.value] + v_postUrl;
+    }
+
+    function f_sel(p_index) {
+        v_iframe.src= v_preUrl + v_mvList[p_index] + v_postUrl;
+    }
+
+    var v_mvList = ["erEHzRfPPB0","RKhsHGfrFmY", "DVQNXLHzKoM", "axy7ES4gnFA"];
+    var v_preUrl = "https://www.youtube.com/embed/";
+    var v_postUrl = "?autoplay=1&mute=1";
+    var v_index = 0;
+    function f_next() {
+        // iframe 내부 접근 테스트
+        var v_ifrmDoc = v_iframe.contentDocument;
+        console.log("ck1 :", v_iframe);
+        console.log("check2 :", v_iframe.contentWindow);
+       
+        v_ifrmDoc.querySelector("#player").innerHTML="<h1>너 플레이어</h1>";
+
+        // iframe의 src 속성에 직접 값을 주기
+        v_iframe.src= v_preUrl  + v_mvList[++v_index] + v_postUrl;
+        if(v_index == (v_mvList.length-1)){
+            v_index = -1;
+        }    
+    }    
+
+    var v_iframe;   // 전역변수로 설정
+    var v_select;
+
+    // 페이지 로딩후 초기화가 필요하다면 window.onload에
+    window.onload = function(){ //페이지 로딩이 끝나면 자동으로 실행
+        v_iframe = document.querySelector("#geniousDayoung");
+        v_select = document.querySelector("#id_sel");
+   }
+</script>
+    <iframe id="geniousDayoung" width="809" height="455"
+     src="https://www.youtube.com/embed/erEHzRfPPB0?autoplay=1&mute=1" 
+     title="G-DRAGON_0922_SBS Inkigayo_니가 뭔데(WHO YOU) + No.1 of the week" 
+     frameborder="0" 
+     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+     allowfullscreen>
+    </iframe>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #id_work{
+            color: rgb(224, 129, 216);
+            background-color: black;
+            font-size: 20px;
+            border: 1px solid blue;
+        }
+    </style>
+</head>
+<body>
+<div id="id_work">
+    당신의 취미는 Max 3개까지만 체크하시오<br>
+    4개째는 3개넘었다는 메세지 출력과 함계 체크안됨<br>
+    다른거 해제하고(2개가 됨) 체크하면(3개째) 체크가 됨<br>  
+</div>
+
+    자바<input type="checkbox" name="hobby" value="java" onclick = "f_hobby(this)"> 
+    자바스크립트<input type="checkbox" name="hobby" value="js" onclick = "f_hobby(this)">
+    HTML<input type="checkbox" name="hobby" value="html" onclick = "f_hobby(this)">
+    CSS<input type="checkbox" name="hobby" value="css" onclick = "f_hobby(this)">
+    서버<input type="checkbox" name="hobby" value="server" onclick = "f_hobby(this)">
+    <br>  
+<script>
+    // var v_ckboxs = document.getElementsByName("hobby");
+
+    var v_cnt = 0;  //  갯수 셀 변수, 초기값 0, 체크된 것이 없으니까
+                    //  function안에 선언하면 함수 불릴때마다 초기화됨
+    var v_max = 3;
+    function f_hobby(p_this){
+        // alert(p_this.value);
+        // 체크여부 확인
+        //    alert(v_ckboxs[p_num].value);
+        // alert(p_this.checked); 
+        // p_this.checked = false; //강제 해제
+        if(p_this.checked) {  //해제에서 체크로 갯수 증가
+            v_cnt++;
+        }else{
+            v_cnt--;
+        }
+        if(v_cnt > v_max){
+            alert("3개만 가능");
+            p_this.checked = false; // 4개째에서 체크 강제해제
+            v_cnt--;    //4번째 체크된거 해제했으니 갯수 감소
+        }
+    }
+ </script>
+
+</body>
+</html>

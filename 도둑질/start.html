@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #wrapper {
+            /* background-image: url(./images/bg.jpeg);
+            background-repeat: no-repeat;
+            background-size: cover; */
+            background-color: white;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        #header {
+            margin: 0 0;
+            display: flex;
+            margin: 5px auto;
+            height: 10vh;
+            width: 95vw;
+            /* border: 1px solid black; */
+        }
+        #content {
+            border-radius: 30px;
+            z-index: 100;
+            background-repeat: no-repeat;
+            background-size: cover;
+            opacity: 0.9;
+            display: flex;
+            margin: 5px auto;
+            height:  70vh;
+            width: 70vw;
+            display: inline-block;
+            /* border: 1px solid black; */
+        }
+        #footer {
+            margin: 5px auto;
+            height:  7vh;
+            width: 95vw;
+            /* border: 2px solid black; */
+        }
+        .child{
+            width: 230px;
+            color: white;
+            text-align: center;
+            font-size: 1.3em;
+        }
+        #copyRight{
+            height: 20%;
+            font-size: 1px;
+            text-align: center;
+        }
+        #footMenu {
+            height: 70%;
+        }
+        #a {
+            text-decoration: none; 
+            color: black;
+            text-align: center;
+            font-size: 1.3em;
+            line-height: 70px;
+        }
+        #right{
+            position: relative;
+            top: 5px;
+            opacity: 0.8;
+            border-radius: 30px;
+            background-image: url(./images/right.jpeg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            float: right;
+            width: 27vw;
+            height: 70vh;
+        }
+        .zIn {
+            position: absolute;
+            text-align: center;
+            background-color: rgb(252, 252, 252, 0.9);
+            top: 60px;
+            left: 220px;
+            border: 0.5px solid black;
+            opacity: 1;
+            font-size: 1.3em;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+    <div id="header"> 
+        <div style="width: 75vw; margin: 0 auto; border: 1px solid blue">
+            <a href="start.html"><img src="./images/icon.jpg" width="200px" height="100px" style=" border-radius: 50px;"></a>
+        </div>
+        <div style="width: 50vw; margin: 0 auto;">
+            <table style="width: 700px;">
+                <tr>
+                    <td style="position: relative; "><a href="about.html" id="a" onmouseover="f_about()"  >About</a>
+                        <div id="id_about" style="visibility: hidden; position: absolute; z-index: 200; left: -20px;  background-color: white; opacity: 0.7; text-align: center; width: 100px; font-size: 1em; border-radius: 30px;">
+                            <div><a  id="a" onclick="f_intro()">intro</a></div>
+                            <div><a  id="a" onclick="f_Q()">help</a></div>
+                            <div><a  id="a" onclick="f_location()">location</a></div>
+                        </div>
+                    </td>
+                    <td><a href="collection.html" id="a" onmouseover="f_aboutT()">Collection</a></td>
+                    <td><a href="gallery.html" id="a"  onmouseover="f_aboutT()">Gallery</a></td>
+                    <td><a href="contact.html" id="a"  onmouseover="f_aboutT()">Contact</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="wrapper"> 
+        <br>
+    <div id="content"> 
+        <div class="child" id="child1" style="position: relative; top: 50px; left: 10px;">
+            <img src="images/i.jpeg" alt="" width="400px" height="500px" style="opacity: 0.9; border-radius: 50px;" >
+            <br>made by lee
+        </div>
+        <div class="child" id="child2" style="position: relative; top: 50px; left: 10px;">
+            <img src="images/방구석.jpg" alt="" width="400px"height = "500px" style="opacity: 1; border-radius: 50px;">
+            <br>천만 영화 구경하기
+        </div>
+        <!-- <div id="daumRoughmapContainer1586156533460" class="root_daum_roughmap root_daum_roughmap_landing" ></div> -->
+        <div class="child" id="child3" style=" position: relative; top: 50px; left: 10px;">
+            <iframe src="http://naver.me/5YPzm6lo" width=800 height=500 style="border-radius: 50px;"></iframe>
+            <!-- <img src="images/넥스트.jpg" alt="" width="200px" height="300px" style="opacity: 0.8; border-radius: 50px;"> -->
+            <br>대전 중구 계룡로 825 <br>  동화빌딩
+        </div>
+    </div>
+    <div id="right" style="text-align: center; ">
+        <a style="position: relative; left: 80px; top: 20px; font-size: 1.5em; " onclick="f_next()">개봉 영화</a>
+        <div class="zIn">
+            <img src="images/right/엽문.jpg" width="170px" height="220px">
+            <br>엽문:더파이널 <br>
+            <img src="images/right/서치아웃.jpg" width="170px" height="220px" >
+            <br>서치아웃
+        </div>
+        <div class="zIn" >
+            <img src="images/right/선생님의일기.jpg" width="170px" height="220px">
+            <br>선생님의 일기 <br>
+            <img src="images/right/n번째이별중.jpg" width="170px" height="220px" >
+            <br>n번째 이별중
+        </div>
+        <div class="zIn" >
+            <img src="images/right/더터닝.jpg" width="170px" height="220px">
+            <br>더 터닝 <br>
+            <img src="images/right/공수도.jpg" width="170px" height="220px" >
+            <br>공수도
+        </div>
+    </div>
+
+    <div id="footer"> 
+        <div id="footMenu">
+            <br>
+            <table style="width: 270px; font-style: italic; font-size: 15px; text-align: center; color: darkblue; opacity: 0.9;  margin: 0 20px;" >
+                <tr>
+                    <td id="td">#</td> 
+                    <td id="td1">#a</td>
+                    <td id="td2">#b</td>
+                    <td id="td3" onclick="f_none()">#c</td>
+                </tr>
+            </table>
+        </div>
+        <div id="copyRight">copyright  NextIT Corp. All rights reserved.</div>
+    </div>
+    </div>
+    <script>
+        window.onload = f_onload;
+        var v_content = document.getElementById("content");
+        var v_bgURL = "url(./images/"; 
+        var v_cnt = 1;
+        function f_chBG(){
+            v_cnt = (v_cnt+1)%4;
+            v_content.style.backgroundImage = v_bgURL +  v_cnt + "bg.jpeg)" ;
+            setTimeout(f_chBG, 1000)
+        }
+        function f_onload() {
+            f_chBG();
+        }
+       var v_about =  document.getElementById("id_about");
+        function f_about(){
+            v_about.style.visibility = "visible";
+        }
+        function f_aboutT(){
+            v_about.style.visibility = "hidden";
+        }
+
+        var v_currIndex = 0;  
+        var v_divs = document.getElementsByClassName("zIn");
+        function f_zindexInit(){
+            //z-index를 초기화
+            for(var i=0; i<v_divs.length; i++) {
+                v_divs[i].style.zIndex = 100;
+            }
+        }
+        function f_next() {
+            v_currIndex++;
+            if(v_currIndex == 3) {
+                v_currIndex = 0;
+            }
+            f_zindexInit(); //초기화 함수호출
+            v_divs[v_currIndex].style.zIndex = 999;
+        }
+
+            document.getElementById("child1").style.display = "none";
+            document.getElementById("child2").style.display = "none";
+            document.getElementById("child3").style.display = "none";
+       
+        function f_intro(){
+            document.getElementById("child1").style.display = "block";
+            document.getElementById("td1").innerHTML = "#lee";
+            document.getElementById("child2").style.display = "none";
+            document.getElementById("child3").style.display = "none";
+        }
+        function f_Q() {
+            document.getElementById("child2").style.display = "block";
+            document.getElementById("td2").innerHTML = "#영화소개";
+            document.getElementById("child1").style.display = "none";
+            document.getElementById("child3").style.display = "none";
+        }
+        function f_location(){
+            document.getElementById("child3").style.display = "block";
+            document.getElementById("td3").innerHTML = "#nextIT";
+            document.getElementById("child1").style.display = "none";
+            document.getElementById("child2").style.display = "none";
+        }
+        function f_none(){
+            document.getElementById("child3").style.display = "none";
+        }
+    </script>
+    <!--
+        2. 설치 스크립트
+        * 지도 퍼가기 서비스를 2개 이상 넣을 경우, 설치 스크립트는 하나만 삽입합니다.
+    -->
+    <!-- <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script> -->
+    
+    <!-- 3. 실행 스크립트 -->
+    <!-- <script charset="UTF-8">
+        new daum.roughmap.Lander({
+            "timestamp" : "1586156533460",
+            "key" : "xtzy",
+            "mapWidth" : "640",
+            "mapHeight" : "360"
+        }).render();
+    </script> -->
+</body>
+</html>
+
+<!-- <link rel="stylesheet" href="css/myStyle.css">
+<script src="js/myscript.js"></script> -->

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<body>
+    <div>로제</div>
+    <div>제니</div>
+    <div>리사</div>
+    <div>다영</div>
+</body>
+<script>
+    // $("div").html(function(p_inx, p_html){
+    //     console.log("this : " , this);
+    //     console.log(p_html);
+    //     return p_html;
+    // });
+    
+    // $("div").html((p_inx, p_html)=>{
+    //     console.log("this : " , this);  // 화살표 함수 안에서는 this가 원하는대로
+    //     console.log(p_html);            // 세팅이 안되는 제약사항 존재 => 보기 싫음
+    //     return p_html;                  // this가 필요하면 function을 쓰면 됨
+    // });
+    // 강제로 꼭 쓰라는 건 아니지만 시대적 코드이니 따라가줌
+
+// Arrow function(화살표 함수
+    // 화살표함수는 this 사용에 몇가지 제약사항이 있는데
+    // 제약사항 외우지말고, this가 원하는대로 동작하지 않으면
+    // 그냥 function 키워드를 사용할 것!!
+    /*
+    const f_arrow = (p_arg)=>{    // 화살표 함수(function)
+        alert("뼈다귀 해장국 굳" + p_arg);
+    }
+    f_arrow("하하하");
+    */
+    /* 아래와 같은 경우
+    const f_arrow2 = (p_arg)=>{ // 매개변수 1개인 경우 () 생략가능
+        return p_arg*2;           // 실행문은 오직 return문 1개인 경우 return 생략가능
+    }
+    */
+   const f_arrow2 = p_arg=> 2*2;    // 위에 있는걸 간략히 표현가능
+    alert(f_arrow2());  // 누르고 확인
+
+    // 표현식을 이용한 함수 선언
+    // hoisting에 해당되지 않음 
+    // 쓰려면 hoisting보다 위에 있어야함
+    
+    /*var myFunc = function(){
+        alert("완전메롱");
+    }
+    myFunc();  // hoisting(올리기), 현재는 선언만 가능
+    */
+    // 정석 함수 선언법
+    // function myFunc(){
+    //     alert("메롱");
+    // }
+
+    // spread operator(펼침 연산자) ...
+    /*
+    function myFunc(...p_args){
+        for(let i=0; i<p_args.length; i++){
+            alert(p_args[i]);
+        }
+    }
+
+    myFunc("a", "b", "c", "d", "e", "f", "g");
+    myFunc("fbi", "kgb", "kjw");
+    */
+</script>

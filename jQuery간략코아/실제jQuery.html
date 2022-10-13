@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<!--jQuery 설치는 아래 1줄로 끝
+    Content Delivery Network
+-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- 아래방식은 내 서버가 힘듦. 
+    cdn으로 제공된다면 cdn방식을 사용하는 것이 유리
+    <script src="../jquery.min.js"></script>
+-->
+<script>
+// => window.onload와 비슷하지만 실제로 DomContentLoaded 이벤트 사용
+    $(function() {  // 문서로딩이 끝나면 이벤트 발생
+        /*
+        alert("내가빠르지");
+        // 나쁜 사용 방식, 이런식으로 쓰면 폰 배터리를 많이 사용함
+        $("div").html("메롱");  // innerHTML
+        $("div").css("color", "red"); // style 객체를 다룸
+        */
+       
+       // 조금 좋은 사용 방식 -> 메소드 체인닝 활용
+       // $("div").html("메롱").css("color", "red");   
+
+        // 가장 좋은 방식 -> 변수로 받아둠
+        var $divs = $("div");  
+        // 똑똑한 개발자는 jQuery객체임을 표시하기 위해 접두어로 $를 사용하기도 함
+        $divs.html("메롱").css("color", "red");
+    });
+    window.onload = function(){
+        // alert("누가빠르게?");
+    }
+</script>
+</head>
+<body>
+    <div>맨날 div1</div>
+    <div>맨날 div2</div>
+    <div>맨날 div3</div>
+    <div>맨날 div4</div>
+    <!--이미지나 동영상은 비동기로 로딩됨-->
+    <video src="../videos/movie2.mp4"></video>
+<script>
+    // jQuery 기본 메소드 정리(★★★★★꼭 외울것!!!!)
+    /* 위 아래 방식은 동일함!!!!!!!!!!!!!!!!
+    $(document).ready(function(){
+        alert("문서로딩 끝났어요");
+    });
+    */
+
+    // window.onload = function(){
+    //     alert("누가 빨라요?");
+    // }
+</script>
+</body>
+</html>

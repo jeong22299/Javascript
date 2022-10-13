@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>on이벤트명=함수  addEventListener(이벤트명, 함수) 둘 다 필요!!</h1>
+    <input type="button" id="btn1" value="누르숑"><br>
+    <input type="button" id="btn2" value="누를까말까"><br>
+<script>
+    var v_btn1 = document.querySelector("#btn1");
+    var v_btn2 = document.querySelector("#btn2");
+
+
+    // v_btn1.addEventListener("click", function(){
+    //     alert("올때 메로나");
+    // });
+
+    /* 위험한 소스, alert가 안 들어가면 찾기도 어려움
+    v_btn2.addEventListener("click", function(){
+        v_btn1.addEventListener("click", function(){
+            alert("바밤바 보석바");
+        })
+    });
+    */
+   /* 
+    v_btn2.addEventListener("click", function(){
+        v_btn1.onclick = function(){
+            alert("바밤바 보석바");
+        }
+    });
+    */
+
+
+    /*
+    v_btn1.onclick = function(){
+        alert("올때 메로나");
+    }
+    v_btn1.onclick = function(){
+        alert("바밤바 보석바")
+    }
+    */
+   /* 두개 다 동작
+   v_btn1.addEventListener("click", function(){
+    alert("올때 메로나");
+   });
+   v_btn1.addEventListener("click", function(){
+    alert("바밤바 보석바")
+   });
+   */
+
+</script>
+</body>
+</html>

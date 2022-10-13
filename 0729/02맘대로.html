@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    .child {
+        font-size: 20px;
+        /* position: static;  default 값*/
+        /* position: relative;static에 의해 자리 잡은 후에 옮김*/
+        position: absolute; /* 화면 왼쪽 모서리가 기준점이 됨, layer*/
+        border: 1px solid palevioletred; 
+    }
+    .smc{
+        left: 110px;
+        top:110px;
+        background-color: blueviolet;
+        z-index: 100;
+    }
+    .smj{
+        left: 100px;
+        top:100px;
+        background-color: plum;
+        z-index: 9999;
+    }
+    .smp{
+        left: 120px;
+        top:120px;
+        background-color: crimson;
+        z-index: 99;
+    }
+    .smg{
+        left: 75px;
+    }
+</style>
+</head>
+<body>
+<div id="container">
+    <div class="child smj" >성민정</div>   
+    <div class="child smc">성민창</div>   
+    <div class="child smp">성민표</div>   
+    <div class="child smg">성민경</div>   
+</div>   
+<input type="button" value="눌러봐" onclick="f_move()"> 
+<script>
+    var v_smj = document.querySelectorAll(".child")[0];
+    function f_move(){
+        if(!v_smj.style.left){  // 만약 inline style로 정의되어 있지 않다면
+            v_smj.style.left = "80px";  // 초기값 스크립트로 세팅
+        }
+        v_smj.style.left = parseInt(v_smj.style.left) + 10 + "px";
+        // alert("ppp"+ v_smj.style.left + "ppp");
+    }
+</script>
+</body>
+</html>

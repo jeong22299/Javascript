@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #heart {
+        position: absolute;
+        left:100px; top:100px;
+        width:300px;
+        height:300px;
+       /* border:1px solid black; */
+        overflow: hidden;
+        transform: rotate(45deg);
+    }
+    .common{
+        position: absolute;
+        border-radius: 50%; /* 모서리를 둥글게 만들기*/
+        background-color: red;
+        width: 100%; /* => 자식클래스에 '%'를 넣으면 부모기준으로 따라감*/
+        height: 100%; /* 부모기준*/
+    }
+    #circle1{
+        left: 150px;
+    }
+    #circle2{
+        top: 150px;
+    }
+    #point{
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        left: 300px;
+        top: 300px;
+        background-color: black;
+    }
+    #bar{
+        position: absolute;
+        width: 50px;
+        height: 300px;
+        background-color: rgb(76, 0, 255);
+        left: 230px;
+    }
+    #wrapper {
+        width:500px;
+        height:500px;
+        position:relative;
+        left: 300px;
+        top:300px;
+        /* border:1px solid magenta; */
+        transform-origin: center top;
+    }
+</style>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="bar"></div>
+        <div id="heart">
+            <div id="circle1" class="common"></div>
+            <div id="circle2" class="common"></div>
+        </div>     
+    </div>
+<script>
+//=============================오늘의 과제======================================
+//  45도만 왔다갔다 움직이게해보자
+
+    var v_wrapper = document.querySelector("#wrapper");
+    var v_gak = 0;
+    var v_tip = 10;
+        /* --- 회전
+    function f_rotate(){
+        v_gak = (v_gak + 10) % 360;  // 360도 나눈 나머지, 숫자크기가 안전해짐
+        var v_wrappers = document.querySelectorAll("#wrapper");
+        for(var i=0; i<v_wrappers.length; i++){
+            v_wrappers[i].style.transform = "rotate(" + v_gak + "deg)";
+        }
+        setTimeout(f_rotate,200);
+    }    
+    f_rotate(); // 함수 콜
+    */
+    function f_rotate(){
+        v_gak = v_gak + v_tip;
+        if(v_gak == 60 || v_gak == -60){
+            v_tip = -v_tip;
+        }
+
+        v_wrapper.style.transform = "rotate(" + v_gak + "deg)";
+        setTimeout(f_rotate, 150);
+    }
+ 
+   f_rotate();
+</script>
+</body>
+</html>- 

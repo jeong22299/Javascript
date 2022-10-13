@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="disp">
+        <img src="../images/차은우1.jpg" width="100" height="100">
+        <img src="../images/송중기2.jpg" width="100" height="100">
+        <img src="../images/차은우2.jpg" width="100" height="100">
+        <img src="../images/송중기.jpg" width="100" height="100">
+    </div>
+    <input type="button" value="어라 이동하네" onclick="f_move()">
+<script>
+    var v_disp = document.querySelector("#disp");
+    
+    function f_move() {
+        var v_img1 = document.querySelectorAll("img")[0]; // 첫번째 img태그
+        v_disp.appendChild(v_img1);
+        
+    }
+</script>
+</body>
+</html>

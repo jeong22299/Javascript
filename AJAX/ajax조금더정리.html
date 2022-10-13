@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<body>
+    <img src="https://via.placeholder.com/500x100.png?text=minjeong">
+    <img src="https://dummyimage.com/600x400/d7ed0e/0011ff.jpg&text=hahahaha">
+</body>
+<script>
+    var $ = {};
+    $.ajax = function(p_set){ // 빈객체에 메소드 추가
+        var v_ajax = new XMLHttpRequest();
+        if(p_set.type == "get"){
+            v_ajax.open(p_set.type, p_set.url + "?" + p_set.data, true);
+        }else{
+            v_ajax.open(p_set.type, p_set.url, true);
+        }
+        v_ajax.onreadystatechange = function(){
+            if(v_ajax.readyState == 4 && v_ajax.status == 200){
+                if(p_set.dataType == "json"){
+                    p_set.success(JSON.parse(v_ajax.responseText));// 결과처리
+                }else if(p_set.dataType == "text"){
+                    p_set.success(v_ajax.responseText);// 결과처리
+                }
+            }
+        }
+        if(p_set.type=="get"){
+            v_ajax.send();
+        }else{
+            v_ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            v_ajax.send(data); // pdst방식일 때는 send()안에 data
+        }
+    }
+
+    $.ajax({
+        type: "get",
+        url: "merong.json",
+        dataType: "json", // 돌려받은 값에 JSON.parse를 적용할지 여부 결정
+        success: function(p_rslt){
+            console.log("너무너무 졸립니다", p_rslt);
+        }
+    });
+
+
+</script>

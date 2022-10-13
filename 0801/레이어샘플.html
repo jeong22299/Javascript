@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+    .wrapper {
+        position: relative; /*static을 만들어진 뒤 이동*/
+        width: 220px;
+        height: 340px;
+        left: 100px; 
+        top: 100px;
+        border: 1px solid red;
+    }
+    .panel{
+        position: absolute; /* 부모(relative일때) 왼쪽 모서리 기준으로 움직이게 됨*/
+        border: 1px solid blue;
+        /* left: 100px;
+        top: 100px; */
+    }
+</style>
+<script>
+
+    // 오늘의 과제!!!! -- setTimeout을 사용해서 layer가 자동으로 넘어가도록!!
+    var v_layers;   // 아직 해당 태그가 안 만들어져서 전역으로 선언만 함!!
+    var v_text;
+
+    // window.onload 이벤트 자동 발생 시점은 html태그가 다 해석이 끝나고
+    // 페이지 내의 이미지 로딩까지 끝나면 발생, 아주 중요!!!!!!!!
+    window.onload = function() {
+        // alert("로딩끝, 이미지 도용")
+        v_layers = document.querySelectorAll(".panel");
+        v_text = document.querySelector("#id_text");
+        v_text.value = 1 + "/" + v_layers.length;
+        f_next();
+    }
+
+    var v_lIndex = 0;   // 초기값
+    function f_initZindex(p_layers) {
+        for(var i=0; i< p_layers.length; i++){
+            p_layers[i].style.zIndex = 1; 
+        }
+    }
+
+    function f_prev(){
+        f_initZindex(v_layers);
+        v_lIndex--;
+        if(v_lIndex == -1){
+            v_lIndex = v_layers.length -1; // 끝으로 보내기
+        }
+        v_text.value = (v_lIndex + 1) + "/" + v_layers.length;
+        v_layers[v_lIndex].zIndex = 999; // 가장 앞으로 끌어오기
+    }
+    // index에서 처음 index로 가게 하는 방법
+    function f_next(){
+        // var v_layers = document.querySelectorAll(".panel");
+        // var v_text = document.querySelector("#id_text");
+        f_initZindex(v_layers);
+        v_lIndex++;
+        if(v_lIndex == v_layers.length){
+            v_lIndex = 0; // 처음으로 되돌리기
+        }
+        v_text.value = (v_lIndex + 1) + "/" + v_layers.length;
+        v_layers[v_lIndex].style.zIndex = 999; // 가장 앞으로 끌어오기 
+        setTimeout(f_next, 1500);
+    }
+    // function f_next2(){
+    //     setTimeout(f_next, 5500);
+    //     return setTimeout(f_next2, 5500);
+    // }
+    // f_next2();
+
+</script>
+</head>
+<body>
+    <input type="button" value=" < " onclick="f_prev()">
+    <input type="text" id="id_text" value="" size="5">
+    <input type="button" value=" > " onclick="f_next()">
+    <div class="wrapper">
+        <div class="panel" style="z-index:1">
+            <table border="1">
+                <tr>
+                    <td><a href="http://daum.net"><img src="../images/진주린.jpg" width="100" height="100"></a></td>
+                    <td><img src="../images/진주린2.jpg" width="100" height="100"></td>
+                </tr>
+                <tr>
+                    <td><img src="../images/진주린3.jpg" width="100" height="100"></td>
+                    <td><img src="../images/진주린4.jpg" width="100" height="100"></td>
+                </tr>
+                <tr>
+                    <td><img src="../images/진주린5.jpg" width="100" height="100"></td>
+                    <td><img src="../images/진중린5.jpg" width="100" height="100"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="panel" style="z-index:888">
+            <table border="1">
+                <tr>
+                    <td><img src="../images/강동원.jpg" width="100" height="100"></td>
+                    <td><img src="../images/roze.jpg" width="100" height="100"></td>
+                </tr>
+                <tr>
+                    <td><img src="../images/손석구.jpg" width="100" height="100"></td>
+                    <td><img src="../images/이준호씨.jpg" width="100" height="100"></td>
+                </tr>
+                <tr>
+                    <td><img src="../images/제니.jpg" width="100" height="100"></td>
+                    <td><img src="../images/74a1.jpg" width="100" height="100"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="panel">
+            <table border="1" style="z-index:888">
+                <tr>
+                    <td><img src="../images/d1.jpg" width="100" height="100"></td>
+                    <td><img src="../images/d2.jpg" width="100" height="100"></td>
+                </tr>
+                <tr>
+                    <td><img src="../images/진주린3.jpg" width="100" height="100"></td>
+                    <td><img src="../images/d3.jpg" width="100" height="100"></td>
+                </tr>
+                <tr>
+                    <td><img src="../images/손석구.jpg" width="100" height="100"></td>
+                    <td><img src="../images/이준호씨.jpg" width="100" height="100"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+<script>
+
+    /* 시퀀스(순서)상 아래 두어 해결
+    var v_layers = document.querySelectorAll(".panel");
+    var v_text = document.querySelector("#id_text");
+    v_text.value = 1 + "/" + v_layers.length;
+    */
+
+</script>
+</body>
+</html>

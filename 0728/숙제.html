@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>디지털 시계 만들기</title>
+    <style>
+        #id_clock{
+            text-align: center;
+            color: yellow;
+            background-color: black;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+<div id="id_clock" class="kgb">00:00:00</div>
+<div id="id_clock" class="kgb">안시계</div>
+<script>
+    
+    // 해당하는 것 중 처음 만나는 거 1개만 가져옴
+    var v_clock = document.querySelector(".kgb");
+    alert(v_clock.innerHTML);
+
+    // 해당 되는 거 모두 가져옴
+    var v_clocks = document.querySelectorAll(".kgb");
+    alert(v_clock[1].innerHTML);
+
+    // 관례상 id값을 직접 쓰는 것은 샘플코드 수준에서만 사용하길 권장
+    // id_clock 이렇게 직접 쓰면 혼남
+    // 일반적으로는 코드가 길기 때문에 
+    /* -- 보통 이런씩으로 쓰지않음
+    var v_clock1 = document.getElementById("id_clock");    // id로 접근
+    console.log(v_clock1);
+    var v_clock2 = document.getElementsByClassName("kgb")[0]; //class로 접근
+    console.log(v_clock2[0]);
+    var v_clock2 = ocument.getElementsByClassName("div");
+      */              
+
+    // 재귀호출, 종료시점이 중요!!
+    // 1~특정숫자까지의 합
+    function f_sum(N){
+        if(N == 1){
+            return 1;
+        }
+        return N * f_sum(N-1);  // factorial      
+    }
+    // 먼저 확인
+    alert(f_sum(10));
+
+    // 스크립트에서 현재 날짜 읽어오기
+    // 오늘의 과제는 setTimeout을 이용해서 1초마다
+    // 시계값이 업데이트 되도록 합니다.
+    // 형식은 시간 24시간 기준, 자리수 2자리
+    // 재귀호출
+    
+    function f_time(){ 
+        var v_today = new Date();   // 자바에서 훔쳐옴
+        var v_year = v_today.getFullYear(); // 년
+        var v_month = v_today.getMonth()+1;   // 월
+        var v_day = v_today.getDate();      // 일
+
+        var v_hour = v_today.getHours();    // 시
+        if(v_hour<10){
+            v_hour = "0" + v_hour;
+        }
+        var v_min = v_today.getMinutes();   // 분
+        if(v_min<10){
+            v_min = "0" + v_min;
+        }
+        var v_secs = v_today.getSeconds();  // 초
+        if(v_secs<10){
+            v_secs = "0" + v_secs;
+        }
+        
+        id_clock.innerHTML = v_hour + ":" + v_min + ":" + v_secs;
+        
+        setTimeout("f_time()",1000);    // 재귀호출
+    }
+    f_time();
+    
+</script>
+</body>
+</html>

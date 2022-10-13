@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    #id_disp{
+        background-color: black;
+        color: white;
+    }
+</style>
+</head>
+<body>
+    <input type="button" value="누르세요" onclick="f_click()">
+<h1>개발자가 알아야할 CSS</h1>
+<div id="id_disp" style="display: block;">
+    <h1>너무 졸려</h1>
+</div>
+<script>
+// 스크립트로 제어하는 스타일은 해당 태그의 inline style이다
+var v_disp = document.querySelector("#id_disp");
+var v_colors = ["blue", "red", "green", "black", "magenta", "pink"];
+function f_click(){
+    if(v_disp.style.display=="none") {
+        v_disp.style.display = "block";
+        return;
+    }
+    v_disp.style.display="none";
+    // style 값 읽어오기
+    // alert("ppp"+ v_disp.style.backgroundColor + "ppp");
+    // alert("qqq"+ v_disp.style.color + "qqq") ;
+    // style 값 쓰기
+    // var v_ranColor = v_colors[Math.floor(Math.random()*v_colors.length)];
+    // console.log(v_ranColor);
+    // v_disp.style.color = v_ranColor; // 개발자툴에서 변화를 눈으로 볼 수 있음
+    // document.body.style.backgroundColor = v_ranColor;
+    // setTimeout(f_click,1000);   
+    
+}
+    </script>
+</body>
+</html>

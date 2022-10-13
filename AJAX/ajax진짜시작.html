@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    /* 에이잭스 기본 틀
+    
+    var v_ajax = new XMLHttpRequest(); 
+
+    v_ajax.open("get","dummy.txt",true);
+        v_ajax.onreadystatechange = function(){
+        if(v_ajax.readyState == 4 && v_ajax.status == 200){
+            alert(v_ajax.responseText);    
+        }
+    }
+    v_ajax.send();
+    */
+
+    // 아래처럼 전역변수로 ajax객체를 만들지 않음(충돌남)
+    // 필요할 때마다 function안에서 지역변수 생성해서 사용 -> 요건 별도 기억
+    // 1. 대신 통신해주는 것을 만듦.
+    var v_ajax = new XMLHttpRequest(); 
+    
+    // 2. 시킬 일 지정
+    // v_ajax.open("메소드","URL","비동기여부"); 
+    // 메소드 : get, post, put, delete... 
+    // 비동기 여부는 true와 false => 특별한 상황이 아니면 true
+    v_ajax.open("get","dummy.txt",true);
+    
+    // 통신 결과를 받으려면 통신이 끝나야 받을 수 있음
+    // 이벤트로 알려줌, 통신 준비중, 데이터 전송중, 끝 등...
+    v_ajax.onreadystatechange = function(){
+        // 통신 중간은 상관없고, 통신이 끝이났는지만 관심(4가 통신끝)
+        if(v_ajax.readyState == 4 && v_ajax.status == 200){
+            // 통신만 끝이났다고 하는 건 왠지 신뢰가 부족
+            // 서버의 응답코드도 잘 응답했다는 코드가 필요
+            // 통신이 가져온 서버 응답코드 200은 응답성공
+            alert(v_ajax.responseText);    
+        }
+    }
+    // 3. 시킨대로 하세요, 할 일이 너무 짧으면, 일부 이벤트를 놓칠 수 있어서
+    // 보통 이벤트 등록을 먼저 함.
+    v_ajax.send();
+
+
+</script>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <div data-num="n5">맨날 div1</div>
+    <div data-num="n8">맨날 div2</div>
+    <div data-num="n9">맨널 div3</div>
+    <div data-num="n7">맨날 div4</div>
+    <input type="text" name="n_txt" value="aaa">
+    <input type="text" name="n_txt" value="roze">
+    <input type="text" name="n_txt" value="aaa">
+    <input type="text" name="n_txt" value="roze">
+<script>
+    // div태그 중에서 속성 data-num 값이 n홀수인 것만
+    // 테두리 border를 맘대로 만드세요
+    $("div").attr("data-num", function(p_inx, p_value){
+        var v_lastNum = p_value.substring(p_value.length-1);
+        if(v_lastNum % 2 ){     // 0이면 false고 1이면 true니까
+            $(this).css("border", "3px solid blue")
+                   .css("border-radius","50%");
+        }
+    })
+
+    // div태그 innerHTML에 문자열 "맨날"이 있는 것만
+    // 글자 노랑, 배경 까망, font-size 4배로 바꾸시오
+    // 읽기(선택한것 중에 첫번째 것만), 전부쓰기, 콜백사용(골라쓰기)
+    $("div").html(function(p_inx, p_html){
+        if(p_html.indexOf("맨날") != -1){
+            $(this).css("color","yellow")
+                   .css("background-color", "black")
+                   .css("font-size", "4em")
+        }
+        return p_html;
+    });
+    
+    // input 태그 중에 value값이 roze인 것만 속성 type을 radio로 바꾸시오
+    /*
+    $("input").val(function(p_inx, p_val){
+        if(p_val == "roze"){
+            console.log($(this));   //
+            $(this).attr("type", "radio");
+            // 일반 Dom 객체를 $()로 둘러싸면 jQury
+            // this.type = "radio";  //$().attr("type", "radio")
+        }
+        return p_val;
+    })
+    */
+
+    // name="txt" 텍스트박스에 "맨날  div"가 들어가도록 작성
+    // $("input").val($("div").eq(1).html());
+
+    // // 여기서 html메소드 억지 문제
+    // // 맨날 div1과 맨날 div4만 html메소드를 이용
+    // //  사랑해요 로제님으로 바꾸시오
+
+    // $("div").html(function(p_inx, p_str){
+    //     if(p_inx == 0 || p_inx ==3){
+    //         return "<h1>따랑해요 로제님</h1>";
+    //     }
+    //     return p_str;
+    // });
+
+</script>
+</body>
+</html>

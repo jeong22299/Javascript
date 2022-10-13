@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    // js의 버젼은 ES5, ES6(2015말) 기준으로 크게 나뉨
+    // let, const, template string, arrow function, spread operator
+    // destructuring, promise, async await등등
+    // ES6 버전방식을 많이 쓰는 것이 유리(올해로IE11 없어짐)
+
+    // template string
+
+    let preInsa = "안농";
+    let guest = "무건님은 마니 무겁나요";
+
+    // let munSum = preInsa + " " + guest;  // 문자열 더하기
+    let munSum = `맘대로 문자열 ${preInsa} ${guest}`;  //빽틱사용
+    alert(munSum);
+    // 주의사항 : 나중에 spring 배우면 js string template과
+    // spring el(expressiong language)의 문법이 똑같아서 서버쪽에서
+    // 에러 발생 그럴때는 $에 \를 붙여줌 \$처럼
+    // Only jsp 파일 안에서만, js파일 안에서는 안 붙여도 됨
+    // 톰캣이 js파일은 java로 변환하지 않기 때문
+
+
+    // 변수 선언 기존의 var에서 let, const가 추가
+    // var는 function 키워드에 의해서 let은 {}에 의해서 변수영역이 달라짐
+    // 다른 언어들의 변수 선언은 let과 같음, var가 특별함.
+
+    const ljh="이준혁";
+    // ljh="이준혁바보";  // 에러가 당연 상수변수이니까
+    // 객체일때는 괜찮음, 객체의 속성변경은 가능
+    const ljhInfo = {
+        name:"이준혁",
+        alias:"사기꾼",
+        check:"다시봐도 사기꾼"
+    }
+
+    ljhInfo.check = "역시 사기꾼";  //ok
+    console.log(ljhInfo);
+
+    // ljhInfo = {"name":"과묵한동기"};  // new Object
+    // const로 객체를 선언한 경우, 객체의 속성은 바꿀 수 있지만
+    // 객체자체는 못 바꿈
+    // 현실에 비유하면 박스는 못 바꾸지만 박스 안의 내용물은 바꿀 수 있음
+    // ljhInfo = new Object(); 
+    // ljhInfo.name = "과묵한동기";
+
+    const myArr = ["kgb", {"name":"선주"}];
+    // myArr = ["fbi", "merong"];  //? 당연히 에러!!!
+    myArr[1].name = "졸리는 선주";
+    console.log(myArr);
+
+</script>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #id_ball{
+        /* transform: skewY(-45deg); */
+        position: absolute;
+        top:100px;
+        width: 100px;
+        height: 100px;
+        background-image: url("../images/74a1.jpg");
+        background-size: 100px 100px;
+        border-radius: 50px 50px; /* width height의 절반을 주면 동그라미 */
+    }
+    #id_bar{
+        position: absolute;
+        width: 200px;
+        left: 50px;
+        height: 30px;
+        background-color: violet;
+        top: 450px; /*움직입 구현할 때 left, top을 많이쓰고, bottom, right는 잘 인씀*/
+
+    }
+</style>
+</head>
+<body>
+    <input type="button" value="누르송" onclick="f_proxy()">
+    <input type="button" value="멈출거야" id="id_stop">
+<h1>과제는 막대가 공을 튕겨내기</h1>
+<h2>막대가 왼쪽 오른쪽 끝에 멈추기</h2>
+<div id="id_ball"></div>
+<div id="id_bar" style="left:30px" ></div>
+<script>
+var v_stop = document.querySelector("#id_stop");
+// // 이벤트 등록법 2번
+// v_stop.onclick =function(){
+//     alert("오늘도");
+// }
+// // 덮어써버림(자바로 보면 OverRiding)
+// v_stop.onclick =function(){
+//     alert("졸려");
+// }
+
+// 이벤트 등록법 3번, 권장되는 최신버전, 하지만 상황에 따라 골라씀
+// 규모가 커서 한 객체의 이벤트에 개발자마다 하고픈 일이 다를 때
+// 사용하면 좋음, 잘 못 쓰면 문제가 잘 안보이는 문제가 있음
+v_stop.addEventListener("click",function(){
+    // alert("전 addEventListener를 이용한 이벤트예용");
+});
+
+v_stop.addEventListener("click",function(){
+    // alert("다영인 전설의 PM(Project Maanger)이 될거예용");
+    clearTimeout(v_timerID);    //타이머 멈추기/setTimeout과 단짝
+    isStart = false;    // 현재 움직이지 않는 상태를 표시(flag 변수)
+});
+
+var isStart = false; // 이런 변수를 flag 변수, switch 변수라고 부름
+function f_proxy(){ // Proxy 패턴이라고 불리는 데 아주 중요
+    if(!isStart){   // 직접 제어하는 것이 머리 아플 때
+        f_move();   // 머릿속에 대리인을 생각합니다.
+        isStart = true;
+    }
+}
+// javascript에서 브라우저의 탭 하나 하나를 window라는 키워드로 부름
+//javascript는 window 안에서 돌아감, window안에 URL이 바뀌면
+// 이전것은 다 없어짐(선언되었던 변수나 함수 등등).
+
+// 왜 안 움직이고 있는 걸까?
+// v_ball.style.left => <div>에 스타일 값을 주지 않았기때문에 값이없을경우 아래
+// if문을 써서 값을 주면 됨
+var v_ball = document.querySelector("#id_ball");
+var v_bar = document.querySelector("#id_bar");
+var v_mvHeight = 5; // 수직 이동거리
+var v_mvWidth = 5;// 수평 이동거리
+console.log("width: ", window.innerWidth);  // 사용자가 보는 화면 넓이값
+console.log("height:", window.innerHeight); // 사용자가 보는 화면 높이값
+// 여기서 돌발 5분과제!!!! 끝에 닿으면 튕겨짐
+var v_gakdo = 0;
+function f_move(){
+
+    if(!v_ball.style.left){     // 해당 태그내에 정의가 안되있을 경우 써야함
+        v_ball.style.left="10px"; 
+        v_ball.style.top="50px";
+        v_bar.style.left="30px";
+        v_bar.style.top = "450px";
+    }
+    v_ball.style.left = parseInt(v_ball.style.left) + v_mvWidth + "px";
+    v_ball.style.top = parseInt(v_ball.style.top) + v_mvHeight + "px";
+
+    v_gakdo = v_gakdo + 5;
+    v_ball.style.transform = "rotate(" + v_gakdo + "deg)";
+  
+    var v_ballLeft = parseInt(v_ball.style.left);
+    var v_ballTop = parseInt(v_ball.style.top);
+    var v_barLeft = parseInt(v_bar.style.left);
+    var v_barRight = v_barLeft + 200;
+
+    var v_ballRight = v_ballLeft + 100; // ball의 width 100
+    var v_ballBottom = v_ballTop + 100; // ball의 height 100
+    var v_barTop = parseInt(v_bar.style.top);
+
+    var chk1 = v_ballRight >= v_barLeft // 비교연산자의 결과는 true/false
+    var chk2 = v_ballLeft <= v_barRight
+    var chkResult = chk1 && chk2;
+
+    // 막대기 공 충돌 구현, 좌우 범위안에서 공의 bottom이 막대 top을 만났을 때
+    if((v_ballBottom  >= v_barTop) && chkResult){  //괜히 충돌 효과
+        v_mvHeight = -v_mvHeight;  //Y축 움직임과 반대로
+    }
+  
+    // 오른쪽, 왼쪽 충돌(둘이 동시에 충돌 될 수 없으니 and인 &&이 아니라 or인 ||!!!)
+    if(v_ballRight > window.innerWidth || v_ballLeft< 0 ){
+        v_ball.style.transform = "skewY(45deg)";
+        v_mvWidth = -v_mvWidth; //부호 반전
+    }
+    
+    // 상하 충돌
+    if(v_ballBottom > window.innerHeight || v_ballTop< 0 ){
+        v_ball.style.transform = "skewY(45deg)";
+        v_mvHeight = -v_mvHeight; //부호 반전
+    }
+    v_timerID = setTimeout(f_move, 50);   
+     // 단짝-> clearTimeout(v_timerID);
+}
+   var v_timerID;  // 전역변수로 선언
+window.onkeydown = function(){
+    // keyCode 누른 키 값 확인
+    if(event.keyCode == 37 ){    // 37 = 왼쪽 화살표
+        v_bar.style.left = parseInt(v_bar.style.left) -10 + "px";
+
+    }   
+    if(event.keyCode == 39){    // 39 = 오른쪽 화살표
+        v_bar.style.left = parseInt(v_bar.style.left) +10 + "px";
+    }
+}
+</script>
+</body>
+</html>

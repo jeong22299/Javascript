@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    // localStorage가 문자열 밖에 저장을 못함(제약사항), 객체 그대로 저장안됨
+    // JSON.stringify(객체), JSON.parse(객체표현문자열)
+    // 객체지향DB처럼 저장이 가능
+    // 억지 예제
+    var v_dataArr = [];
+    for(var i = 0; i <=10; i++) {
+        var v_saram={};
+        v_saram.name = "이름" + i;
+        v_saram.age = Math.floor(Math.random()*100);
+        v_dataArr.push(v_saram);    // 항상 어떤 타입을 담는지 확인해야 함!
+    }
+    localStorage.setItem("batman", JSON.stringify(v_dataArr));
+    
+    // 추가, 수정, 삭제.. 이런 걸 하려면 먼저 꺼내야 함
+    v_dataArr  = JSON.parse( localStorage.getItem("batman"));
+    v_dataArr.push({"name" : "김효정", "boyfriend" : "차은우"});
+
+    
+    // cookie(쿠키) 대용으로 쓰면 좋음(시대적 추세)
+    // 객체를 문자열화해서 저장하는 순간 정확히 MongoDB랑 똑같아서
+    // 따로 객체지행 DB를 공부하지 않아도 됨
+    localStorage.setItem("batman", JSON.stringify(v_dataArr));
+</script>

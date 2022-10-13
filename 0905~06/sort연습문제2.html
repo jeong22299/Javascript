@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <table border="2">
+        <tbody id="t_body">
+            <tr>
+                <th onclick="f_sortTitle()">제목</th>
+                <th onclick="f_sortWriter()">지은이</th>
+                <th onclick="f_sortContent()">내용</th>
+                <th onclick="f_sortDate()">날짜</th>
+            </tr>
+            <tr>
+                <td>승훈만만세</td>
+                <td>승훈</td>
+                <td>트와이스 나연 짱</td>
+                <td>2022-06-12</td>
+            </tr>
+            <tr>
+                <td>하용만만세</td>
+                <td>아무개</td>
+                <td>할거야 안할꺼야</td>
+                <td>2021-05-02</td>
+            </tr>
+            <tr>
+                <td>민정만만세</td>
+                <td>민정</td>
+                <td>블링크에 가입하삼</td>
+                <td>2022-09-22</td>
+            </tr>
+            <tr>
+                <td>집에 가고싶어</td>
+                <td>민정2</td>
+                <td>새마음 새정신</td>
+                <td>2022-09-06</td>
+            </tr>
+        </tbody>
+    </table>
+<script>
+    var v_tbody = document.querySelector("#t_body");
+    var v_trs = document.querySelectorAll("tr");
+    // v_trs는 실제로는 배열이 아님, 배열로 변환이 필요
+    var v_arrTr = [];
+    for(var i=1; i<v_trs.length; i++){  // 0번을 뺀건 헤더라서
+        v_arrTr.push(v_trs[i]);
+    }
+    // 힌트 : append나 appendChild는 이미 객체가 존재하고 있을 땐
+    // 해당 객체를 옮겨버림
+    function f_sortTitle(){
+        v_arrTr.sort(function(a,b){// a와 b는 tr태그 객체
+            if(a.children[0].innerHTML > b.children[0].innerHTML){
+                return 1;   //10이던 100이던 양수이기만 하면됨
+            }else{
+                return -1;
+            }
+        });
+        // 정렬여부 눈으로 확인
+        for(var i=0; i<v_arrTr.length; i++){
+            console.log(v_arrTr[i]);
+            v_tbody.appendChild(v_arrTr[i]);
+        }
+
+    }
+    // for(var i=0; i<v_arrTr.length; i++) {
+    //     console.log("===================")
+    //     console.log(v_arrTr[i].children[0].innerHTML); // 제목
+    //     console.log(v_arrTr[i].children[1].innerHTML); // 지은이
+    //     console.log(v_arrTr[i].children[2].innerHTML); // 내용
+    //     console.log(v_arrTr[i].children[3].innerHTML); // 닐짜
+    //     console.log("===================")
+    // }
+</script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>talk</title>
+    <link rel="shortcut icon" href="./개인과제img/출드좋다.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="CSS.css">
+
+</head>
+<body>
+    <div id="wrapper">
+    <div id="header" >
+        <div id="main">
+            <a href="main.html"><img src="./개인과제img/메인1.jpg" style="width: 280px;  height: 92px;"></a>
+        </div>
+        <div id="main">
+            <table style=" width: 1000px;">
+                <tr>
+                    <td><a href="collection.html" id="menu" >Collection</a></td>
+                    <td><a href="talk.html" id="menu" >Talk</a></td>
+                </tr>
+            </table>
+        </div>
+        </div>
+        <div id="talk">
+            <h1>Talk Talk</h1>
+        </div>    
+        <div id="id_text">
+            <div id="baby"></div>
+        </div>
+        <div id="id_text2">
+            <select id="id_sel" style="width: 150px; height: 30px;" >
+                <option value="-1" selected>드라마선택하세요</option>
+                <option value="이상한변호사우영우" >이상한변호사우영우</option>
+                <option value="빅마우스" >빅마우스</option>
+                <option value="현재는아름다워" >현재는아름다워</option>
+                <option value="으라차차내인생" >으라차차내인생</option>
+                <option value="황금가면" >황금가면</option>
+                <option value="비밀의집" >비밀의집</option>
+            </select>
+            <input type="text" id="id_name" value="" placeholder="닉네임을 입력하세요">
+            <input type="text" id="id_ttt" value="" onkeydown="f_enter()" placeholder="글을 입력하세요">
+            <input type="button" value="등록" id="id_button" onclick="f_write()" style="width: 50px; height: 30px;">
+        </div>
+    </div>
+<script>
+    var v_ttt = document.querySelector('#id_ttt');
+    var v_name = document.querySelector('#id_name');
+    var v_text = document.querySelector("#baby");
+    var v_sel = document.querySelector("#id_sel");
+
+    function f_write(){
+        if(v_sel.value == -1){
+            alert("드라마를 선택해주세요");
+            return;
+        }
+        if(v_name.value == ""){
+            alert("닉네임을 입력해주세요");
+            return;
+        }
+        if(v_ttt.value == ""){
+            alert("글을 입력해주세요");
+            return;
+        }
+        if(v_ttt.value !="") {
+            v_text.innerHTML += "[" + v_name.value + "]" + "<br>" + v_sel.value +"&nbsp; : &nbsp;&nbsp;" + v_ttt.value +"<br>";
+            var v_talk = [];
+            
+            var v_txt = {};
+            v_txt.select = v_sel.value;
+            v_txt.name = v_name.value;
+            v_txt.text = v_ttt.value;
+            v_talk.push(v_txt);
+            
+            localStorage.setItem("talk", JSON.stringify(v_talk));
+            // v_talk = JSON.parse(localStorage.getItem("talk"));            
+            var v_save = JSON.parse(localStorage.getItem("talk"));
+            v_ttt.value = "";
+
+
+
+            
+        }
+    }
+    function f_enter(){
+        if(event.keyCode == 13){
+            f_write();
+        }
+    }
+
+
+    
+    
+</script>
+</body>
+</html>

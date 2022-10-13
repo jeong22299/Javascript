@@ -1,0 +1,35 @@
+      /* 보통 전체를 감싸는 div를 wrapper container라는 id나
+        class를 주는 것이 관례
+        외부 stylecheet 파일 */
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        div{
+            border:3px solid pink;
+        }
+        #wrapper {
+            width: 98vw;
+            height: 98vh;
+            border: 5px solid red; /*눈으로 보기*/
+        }
+        #header {
+            height: 25%;
+        }
+        #middle {
+            height: 50%;
+        }
+        #side, #content {
+            display: inline-block;
+        }
+        #footer{
+            height: 25%;
+        }
+        #side{
+            width: 40%;
+            height: 100%;
+        }
+        #content {
+            width: 57%;
+            height: 100%;
+        }

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<script src="./keyword.js"></script>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #wrapper{
+        margin: 0 auto;
+         /* div를 화면 가운데 위치하도록 top/bottom은 0, left/right는 자동*/
+        width: 400px;
+        height: 500px;
+        border: 1px solid black; /*레이아웃 구성할 땐 항상 보이게!!*/
+    }
+    #hhh{
+        background-image: url("../images/송중기.jpg");
+        position: relative;
+        width: 100%; /*자식은 부모기준으로, 부모의 width와 똑같이*/
+        height: 85%;
+        border: 1px solid blue;
+        overflow: hidden;
+    }
+    #ggg{
+        background-image: url("../images/송중기.jpg");
+        position: relative;
+        z-index: 999999999;
+        width: 99%;
+        height: 14%;
+        border: 3px solid pink;
+    }
+    input{
+        font-size: 2.2em;
+    }
+    .dongmin{
+        z-index: 1;
+        color: yellow;
+        background-color: black;
+        position: absolute;
+        display: inline-block;
+        border: 2px solid red; /*누르고 영역 확인하기*/
+    }
+</style>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="hhh">
+        </div>
+        <div id="ggg">
+            <br>
+            <input type="text" id="hyojung" value="" size="8">
+            <input type="button" id="start" value="시작">
+            <input type="button" id="stop" value="멈춤">
+        </div>
+    </div>
+<script>
+    // 과제!!!!!!!!!!!! 시작 버튼 눌러도 안 빨라지게
+    //                  멈춤 버튼 누르면 멈추게
+
+    var v_hyojung = document.querySelector("#hyojung");
+    function f_enter(){
+        if(event.keyCode == 13){
+            // 엔터키 쳤을때 처리
+            for(var i=0; i<v_dongArr.length; i++){
+                if(v_dongArr[i].innerHTML == v_hyojung.value){
+                    v_dongArr[i].style.top = "-30px";   // 화면밖으로밀어냄
+                    // 배열.splice(인덱스, 갯수)!!!! 중요!!!! -> 배열에서 삭제(중복안되게)
+                    v_dongArr.splice(i, 1);
+                    break;
+                }
+            }
+            v_hyojung.value = ""; // 텍스트박스 값 클리어
+        }
+    }
+
+    v_hyojung.onkeydown = f_enter;
+
+    var v_hhh = document.querySelector("#hhh");
+    var v_start = document.querySelector("#start");
+
+    var v_ran;
+    var v_ranDiv;
+    
+    // 선택된 글자만 담는 배열 -> 전역변수를 선언하면 두 함수를 이어 줄 수 있음
+    var v_dongArr =[];
+
+    // 선택된 글자 떨어뜨리는 기능만 하는 함수
+    function f_ranSel(){
+        v_ran = Math.floor(Math.random()*v_jsStudy.length);
+        v_ranDiv = document.querySelector("#dayoung"+v_ran);
+        v_ranDiv.style.left = Math.ceil(Math.random()*300) + "px";
+        v_dongArr.push(v_ranDiv);
+        setTimeout(f_ranSel, 1800);
+    }
+    // 위에 숨어있는 글자들 중에서 랜덤하게 글자를 선택하는 함수
+    function f_ranColor(){
+        return "rgb(" + Math.floor(Math.random()*256)+","
+                + Math.floor(Math.random()*256)+","
+                + Math.floor(Math.random()*256)+")";
+    }
+    function f_falling(){
+        for(var i=0; i<v_dongArr.length; i++){
+            var v_ranSpeed = Math.ceil(Math.random()*10);
+            v_dongArr[i].style.color = f_ranColor();
+            v_dongArr[i].style.backgroundColor = f_ranColor(); // 재미
+            v_dongArr[i].style.transform = "rotate(" + Math.floor(Math.random()*360) + "deg)";
+            v_dongArr[i].style.top = parseInt(v_dongArr[i].style.top) + v_ranSpeed + "px";
+            if(parseInt(v_dongArr[i].style.top) >= 430){
+                v_dongArr[i].style.top = "-30px";
+                v_dongArr.splice(i,1);
+            }
+        }
+        setTimeout(f_falling,800);        
+    }
+
+    function f_start(){
+        f_ranSel();
+        f_falling();
+    }
+
+    v_start.onclick = f_start;
+
+    function f_init() {
+        for(var i=0; i<v_jsStudy.length; i++){
+            var v_div = document.createElement("div");
+            v_div.innerHTML = v_jsStudy[i];
+            v_div.setAttribute("id","dayoung"+i);
+            v_div.setAttribute("class","dongmin");
+            v_div.style.width = v_jsStudy[i].length*9 + 5 + "px";
+            v_div.style.height = "20px";
+            v_div.style.top = "-30px"; // 일단 많이 올려서 감추는 걸로 
+            v_hhh.appendChild(v_div);
+        }
+    }
+    window.onload = f_init; //페이지 로딩후 자동 실행
+</script>
+</body>
+</html>

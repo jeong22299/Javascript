@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<friends>
+    <friend>
+        <name>심성보</name>
+        <age>20</age>
+        <alias>오랜만</alias>
+    </friend>
+    <friend>
+        <name>길선주</name>
+        <age>30</age>
+        <alias>패셔니스타</alias>
+    </friend>
+    <friend>
+        <name>허지현</name>
+        <age>40</age>
+        <alias>차기반장</alias>
+    </friend>
+    <friend>
+        <name>윤민석</name>
+        <age>50</age>
+        <alias>화룡점정</alias>
+    </friend>
+</friends>

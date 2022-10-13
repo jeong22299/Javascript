@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>무한스크롤</title>
+</head>
+<body>
+    <!-- 특히 모바일쪽에서 많이 사용됨 -->
+    <h1>지현이는 생각보다 많이 잔당? 그렇당</h1>
+    <h1>지현이는 생각보다 많이 잔당? 그렇당</h1>
+    <h1>지현이는 생각보다 많이 잔당? 그렇당</h1>
+    <h1>지현이는 생각보다 많이 잔당? 그렇당</h1>
+    <h1>지현이는 생각보다 많이 잔당? 그렇당</h1>
+    <h1>지현이는 생각보다 많이 잔당? 그렇당</h1>
+    <h1>지현이는 생각보다 많이 잔당? 그렇당</h1>
+    <h1>지현이는 생각보다 많이 잔당? 그렇당</h1>
+    <h1>지현이는 생각보다 많이 잔당? 그렇당</h1>
+    <h1>지현이는 생각보다 많이 잔당? 그렇당</h1>
+    <h1>지현이는 생각보다 많이 잔당? 그렇당</h1>
+    <h1>지현이는 생각보다 많이 잔당? 그렇당</h1>
+<script>
+    //스크롤 이벤트
+    window.onscroll = function(){
+        // 문서(document)의 실시간 바뀌는 정보를 가진 document.documentElement 
+        let docElem = document.documentElement; // 줄여쓰기 용도
+
+        // 스크롤이 끝까지 같다면 
+        let tunning = 50;
+        if((docElem.scrollTop + docElem.clientHeight) >= (docElem.scrollHeight - tunning) ){
+           // alert("스크롤 다 내렸어용!! 그럼 올령");
+           //보통 여기에 AJAX를 이용해서 서버에서 데이타를 가져와서 추가해줌
+           for(var i=1; i<=10; i++){
+              let h1 = document.createElement("h1");
+              let ranNum = Math.ceil(Math.random()*100);
+              h1.innerHTML = "태훈이도 자주 잔당? " + ranNum + "번 그렇당";
+              document.body.appendChild(h1);
+           }
+        }
+
+/*   누느로 갑쓸 화긴 해야 이해가 됨
+        console.log("스크롤높이:" + document.documentElement.scrollTop);
+        console.log("보이는 화면높이:" + document.documentElement.clientHeight);
+        console.log("실제문서 높이: " + document.documentElement.scrollHeight);
+        console.log("=========================================");
+*/ 
+    }
+</script>
+</body>
+</html>

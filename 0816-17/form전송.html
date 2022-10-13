@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <form action="일단확인.html" method="get" onsubmit="return f_submit()">
+        아이딩 <input type="text" name="n_id" value="" required><br>
+        <!--text이지만 뒤에서 노려보는 사람에게 감추기 위함 -->
+        암호 <input type="password" name="n_pw" value="" required><br>
+        <input type="submit" value="떤쏘옹">
+    </form>
+<script>
+    function f_submit(){
+        if(document.forms[0].n_id.value == "roze"){
+            return true;  // 쩐송
+        }
+        return false; // 안 쩐쏭
+    }
+</script>    
+    <!-- form과 submit 사용시 엄청 많이 사용하는 실수
+        submit에 onclick 이벤트를 기술함 
+        전송할지 안할지 제어할 땐 form 태그의 onsubmit 이벤트를 활용
+        전송직전에 발생하는 이벤트가 onsubmit
+    -->    
+</body>
+</html>

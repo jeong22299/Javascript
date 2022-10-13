@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div id="id_disp"></div>
+<input type="button" value="xml통" onclick="f_xml()">
+<input type="button" value="제이슨통" onclick="f_json()">
+<input type="button" value="테스트" onclick="f_csv()">
+<input type="button" value="아작스호출" onclick="f_ajax()">
+<script>
+    var v_disp = document.querySelector("#id_disp");
+
+    function f_xml() {
+        var v_ajax = new XMLHttpRequest();
+        v_ajax.open("get", "huk.xml", true);
+        v_ajax.onreadystatechange = function(){
+            if(v_ajax.readyState == 4 && v_ajax.status == 200){
+                // alert(v_ajax.responseText); // xml은 이렇게 받으면 안됨!! 어려움
+                // xml문서나 html문서나 태그로 이루어진 문서인건 매 한가지
+                var v_xmlDoc = v_ajax.responseXML;
+                f_test3(v_xmlDoc);
+                // var v_friends = v_xmlDoc.querySelectorAll("friend");
+                // var v_children = v_friends[1].children;
+                // for(var i=0; i<v_children.length; i++){
+                //     alert(v_children[i].innerHTML);
+                // }
+            }
+        }
+        v_ajax.send();
+    }
+
+    function f_test3(p_doc){
+        // p_doc를 이용해서 friend를 id_disp에 table형식으로 출력
+        // p_doc는 document객체, xml은 문서구조만 잘 파악하면 큰 문제 없음
+        var v_friends = p_doc.querySelectorAll("friend");
+        var v_tblStr = "<table border=3>";        
+        for(var i=0; i< v_friends.length; i++){
+            var v_children = v_friends[i].children;
+            v_tblStr += "<tr>";
+            v_tblStr += "<td>" + v_children[0].innerHTML + "</td>";
+            v_tblStr += "<td>" + v_children[1].innerHTML + "</td>";
+            v_tblStr += "<td>" + v_children[2].innerHTML + "</td>";
+            v_tblStr += "</tr>";
+        }
+        v_tblStr +="</table>";
+        v_disp.innerHTML = v_tblStr;
+    }
+
+    function f_json() {
+        var v_ajax = new XMLHttpRequest();
+        v_ajax.open("get", "merong.json", true);
+        v_ajax.onreadystatechange = function(){
+            if(v_ajax.readyState == 4 && v_ajax.status == 200){
+                // JSON.parse => 배열로 바뀜
+                var v_arr = JSON.parse(v_ajax.responseText);
+                f_test2(v_arr);
+            }
+        }
+        v_ajax.send();
+    }
+
+    function f_test2(p_arr){
+        // 넘어온 값을 id_disp에 table형식으로 출력하시오!
+        var v_str = "<table border=3>"
+        
+        for(var i=0; i<p_arr.length; i++){
+            v_str += "<tr>";
+                v_str += "<td>" + p_arr[i].name + "</td>";
+                v_str += "<td>" + p_arr[i].age + "</td>";
+                v_str += "<td>" + p_arr[i].alias + "</td>";
+                v_str += "<tr>";
+        }
+        v_str += "</table>";
+        v_disp.innerHTML = v_str;
+    }
+
+    var f_csv = function(){
+        var v_ajax = new XMLHttpRequest();
+        v_ajax.open("get", "test.csv", true);
+        v_ajax.onreadystatechange = function(){
+            if(v_ajax.readyState==4 && v_ajax.status==200){
+                f_test(v_ajax.responseText);
+            }
+        }
+        v_ajax.send();
+    }
+
+    function f_test(p_arg) {
+        // 여기서 벼락같은 문제
+        // 넘어온 값을 id_disp에 table형식으로 출력
+        var v_lines = p_arg.split("\n"); //split하면 무조건 배열
+        var v_tblStr = "<table border=3>";        
+        for(var i=0; i<v_lines.length; i++){
+            var v_tds = v_lines[i].split(",");
+            v_tblStr += "<tr>";
+            v_tblStr += "<td>" + v_tds[0] + "</td>"
+            v_tblStr += "<td>" + v_tds[1] + "</td>"
+            v_tblStr += "<td>" + v_tds[2] + "</td>"
+            v_tblStr += "</tr>";
+            alert(v_lines[i]); // 한줄 내용 확인            
+        }
+        v_tblStr +="</table>";
+        v_disp.innerHTML = v_tblStr; // 완성된 문자열을 한번에 집어넣기
+
+    }
+
+    var v_myRoze;
+    function f_ajax() {
+        var v_ajax = new XMLHttpRequest();
+        v_ajax.open("get", "dummy.txt", true); // 특별한 경우가 아니면 항상비동기(true)로 설정
+        v_ajax.onreadystatechange = function(){
+            if(v_ajax.readyState == 4 && v_ajax.status == 200){
+                v_disp.innerHTML += "<h1>" + v_ajax.responseText + "</h1>";
+                v_myRoze = v_ajax.responseText;
+            }
+        }
+        v_ajax.send();
+        alert(v_myRoze); // 비동기라 undefined 이런 실수 많이함
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+</head>
+<body>
+    <!--JSON구조와 update 메소드가 핵심!-->
+    <!--canvas 태그의 부모 영역의 크기가 차트 크기를 정함-->
+    <div style="width: 400; border: 2px solid pink">
+        <canvas id="myChart"></canvas>
+    </div>
+    <input type="button" value="차트업데이트" onclick="f_update()">
+    <input type="button" value="아작스로데이터" onclick="f_update2()">
+    <script>
+        function f_update2() {
+            // gaejul 디렉토리의 testData.json을 아작스로 
+            // 가져와서 차트에 그리시오, 후다닥!!
+            var v_ajax = new XMLHttpRequest();
+            v_ajax.open("get", "./gaejul/testData.json", true);
+            v_ajax.onreadystatechange = function(){
+                if(v_ajax.readyState == 4 && v_ajax.status == 200){
+                    console.log(v_ajax.responseText);
+                    f_updateChart(JSON.parse(v_ajax.responseText));
+                    
+                }
+            }
+            v_ajax.send();
+        }
+
+        // 차트를 만드는 함수
+        function f_updateChart(p_arg){
+            var v_label = p_arg.label;
+            var v_title = p_arg.name;
+            var v_data = p_arg.score;
+
+
+            myChart.data.labels = v_label;
+            myChart.data.datasets.splice(1,1); // 강제비우기
+            myChart.data.datasets[0].data = v_data;
+            myChart.data.datasets[0].label = v_title;
+            // myChart.data.datasets[0].type = "pie";
+            myChart.update(); // 렌더링
+        }
+
+        function f_ran255() {
+            return Math.floor(Math.random()*256);
+        }
+        function f_ranAlpha() {
+            // 0.1~ 0.9 발생 -> 숫자로 변환(소수점가지게)
+            return parseFloat("0." + Math.ceil(Math.random()*9));
+        }
+        // 칼라는 차트생성 코드에 넣으면 라인만 길어지는 긴 슬픔, 안 개즐
+        function f_color(p_cnt){
+            var v_colols = [];
+            for(var i=1; i<=p_cnt; i++){
+            var v_colorStr = "rgba(" + f_ran255() 
+                                 + "," + f_ran255() 
+                                 + "," + f_ran255() 
+                                 + "," + f_ranAlpha() +")";
+                v_colols.push(v_colorStr);
+            }
+            return v_colols; // 배열리턴
+        }
+
+        var v_types = ["bar", "line", "rader", "pie", "doughnut"];
+        function f_update() {
+            var v_datas1 = [];
+            var v_datas2 = [];
+            for(var i=0; i<=6; i++){
+                var v_ranVal = Math.ceil(Math.random()*100);
+                v_datas1.push(v_ranVal);
+                v_ranVal = Math.ceil(Math.random()*100);
+                v_datas2.push(v_ranVal);
+            }
+            // 만든 데이터를 차트에 주기
+            // 데이터를 다시 넣으면 차트를 다시 그려야함.
+            // myChart.type 이거는 안 먹힘.
+            var v_ranSu = Math.floor(Math.random()*v_types.length);
+            // myChart.data.datasets[0].type = v_types[v_ranSu];
+            myChart.data.datasets[0].data = v_datas1;
+            myChart.data.datasets[1].data = v_datas2;
+            myChart.update(); // Chart.js에서 가장 중요한 메소드!!!!
+                              // rendering 이라고 멋지게 이야기 함.
+            setTimeout(f_update, 1000);
+        }
+
+        // canvas 태그는 그래픽용으로, 브라우져 기반 개임개발하는 회사나
+        // 예쁜 브라우져 용 웹 컴포넌트를 만드는 회사에서 주로 사용
+        // 일반적인 웹프로그램 개발자와는 조금 거리가 있음
+        // 그래픽 엔진으로 유명한 건 마이크로 소프트의 Direct-X가 있고
+        // canvas는 오픈소스인, webGL(web Graphic Library)
+
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar', //bar, line, pie, radar,doughnut.. 등등
+        data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                type: 'bar',
+                label: '# 승연 짱',
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: f_color(6),
+                borderWidth: 1
+            },
+            {
+                type:"line", // 오직 bar와 line만 같이 한 차트에 나올 수 있게
+                label: '# 하용짱',
+                data: [21, 91, 6, 8, 12, 23],
+                backgroundColor: f_color(6),
+                borderWidth: 1
+            }
+            ]
+    },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    // chart.js 구조(json 형식)만 파악하면 핵심 사용법 끝
+    // alert(myChart.data.datasets[0].data);
+    // alert(myChart.data.labels[2]);
+    </script>
+</body>
+</html>

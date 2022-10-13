@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="누르시오" onclick="f_write()">
+<script>
+    function f_write() {
+        // 문서형태가 완성된 다음에 document.write를 쓰면
+        // 기존 문서를 지우고 다시 쓰게 됨
+        // 이것만 주의해서 사용하면 큰 문제 없음
+        document.write("<h1>이게 뭔일이야?</h1>");
+    }
+    // document.write -> 사용이 권장 되지 않음 -> 잘 못써서
+    /*
+    document.write("<div style='text-align:center'>");
+    for(var i=1; i<=6; i++) {
+        document.write("<h" + i + ">난 최고의 프로그래머다</h" + i + ">");
+    }
+    for(var i=5; i>0; i--) {
+        document.write("<h" + i + ">난 최고의 프로그래머다</h" + i + ">");
+    }
+    document.write("</div>");
+    -----------------------오늘의 과제-----------------------------------
+    반복문(for, while 상관없음)을 한번만 써서 구현해 보기
+    반복문 이외의 조건문 등은 편하게 사용해도 무방*/
+    // document.write("<div style='text-align:center'>");
+    // for(var i=1; i<=11; i++) {
+    //     if(i <= 6){
+    //         document.write("<h" + i + ">난 최고의 프로그래머다</h" + i + ">");
+    //     }else if(i > 6){
+    //         document.write("<h" + (12-i) + ">난 최고의 프로그래머다</h" + (12-i) + ">");
+    //     }
+    // } 
+    // 개발자들은 상태변수(flag 변수, switch변수)를 잘 선언해야함.
+    var v_direction = true; // 이런변수를 잘 선언해야함
+    for(var i=1;i>=1 && i<=6;){
+        document.write("<h" +i + ">효정이 안녕</h"+i+ ">");
+        if(i==6) {v_direction = false}; // 방향전환 포인트
+        if(v_direction){
+            i= i+1;
+        }else{
+            i=i-1;
+        }
+        
+    }
+
+</script>
+</body>
+</html>

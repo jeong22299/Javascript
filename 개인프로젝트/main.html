@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>출발!드라마가 좋다!</title>
+    <link rel="shortcut icon" href="./개인과제img/출드좋다.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="CSS.css">
+<style>
+
+</style>
+</head>
+<body>
+<div id="wrapper">
+    <div id="header">
+        <div id="main">
+            <a href="main.html"><img src="./개인과제img/메인1.jpg" style="width: 280px;  height: 92px;"></a>
+        </div>
+        <div id="main">
+            <table style=" width: 700px;">
+                <tr>              
+                    <td><a href="collection.html" id="menu" >Collection</a></td>
+                    <td><a href="talk.html" id="menu"  >Talk</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="content">
+        <div id="mChild1" class="mChild">
+           <a href="collection.html"><img src="./개인과제img/우영우.jpg"></a> 
+           <a href="collection.html"><img src="./개인과제img/빅마우스.jpg"></a> 
+            <a href="collection.html"><img src="./개인과제img/현재는아름다워.jpg"></a> 
+        </div>
+        <div id="mChild2" class="mChild">
+            <a href="collection.html"><img src="./개인과제img/으라차차내인생.jpg"></a> 
+            <a href="collection.html"><img src="./개인과제img/황금가면.jpg"></a> 
+            <a href="collection.html"><img src="./개인과제img/비밀의집.jpg"></a> 
+        </div>
+    </div>
+    
+</div>
+<script>
+    var v_mChild1 = document.querySelector("#mChild1");
+    var v_mChild2 = document.querySelector("#mChild2");
+    var v_mvWidth = 10;
+
+    function f_move(){
+        v_mChild1.style.left = parseInt(v_mChild1.style.left) - v_mvWidth + "px";
+        v_mChild2.style.left = parseInt(v_mChild2.style.left) - v_mvWidth + "px";
+
+        if(parseInt(v_mChild2.style.left) == -1520) v_mChild2.style.left = "1520px";
+        if(parseInt(v_mChild1.style.left) == -1520) v_mChild1.style.left = "1520px";
+
+        setTimeout(f_move, 100);
+    }
+
+    window.onload = function(){
+        if(!v_mChild1.style.left){
+            v_mChild1.style.left = "0px";
+            v_mChild2.style.left = "1520px";
+        }
+        f_move();
+    }
+</script>
+</body>
+</html>

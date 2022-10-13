@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!--서버 프로그램 잠깐만 맛봐용-->
+    <form action="hanbun.php" id="id_form1" method="get">
+        <input type="text" name="aaa" value="화룡점정">
+        <div name="kgb" value="fbi">메롱</div>
+        <input type="text" name="zzz" value="마스코트">
+        <input type="submit" value="쩐쏭">
+    </form> 
+    <hr>   
+    <form action="hanbun.php" method="post">
+        <input type="text" name="bbb" value="윤민석">        
+        <input type="text" name="yyy" value="허지현">
+        <input type="submit" value="떤쏭">        
+    </form>
+<script>
+    //alert(document.querySelector("#id_form1").action);
+    //alert(document.querySelector("#id_form1").method);
+    //조금 옛날식 접근법 -> 지금도 사용됨, 있다는 정도만 알아줘도 훌륭
+    //alert(document.forms[0].elements[1].value);//? 멜론바
+    //alert(document.forms[1].elements[1].value);
+    //document.forms[0].aaa.value = "마징가Z";
+    //alert(document.forms[0].aaa.value);
+    //alert(document.forms[1].bbb.value);
+</script>    
+</body>
+</html>

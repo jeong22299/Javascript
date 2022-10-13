@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #id_files {
+        position: relative;
+        left: 30px;
+        top: 100px;
+        width: 520px;
+        height: 100px;
+        border:3px solid aquamarine;
+    }
+</style>
+</head>
+<body>
+    <ol id="id_flist"></ol>
+    <div id="id_files" ondragover="f_dover()" ondrop="f_drop()">
+        너무 졸려옹
+    </div>
+<script>
+    var v_fileList = document.querySelector("#id_flist");
+    var v_drop = document.querySelector("#id_files");
+    // dragove drop 두 이벤트를 막아야만 브라우져가 자동으로 파일 여는것을 막을수 이씀
+    function f_dover(){
+        event.preventDefault();
+    }
+    // 파일 1개만 읽는 함수
+    function f_readFile(p_file){
+        console.log("파일객체:",p_file.name);
+        var v_fileReader = new FileReader();
+        v_fileReader.onload = function(){   // 다 읽으면 자동 이벤트 발생
+            var v_img = document.createElement("img");
+            v_img.src = v_fileReader.result; // 읽은 내용을 result라는 속성에 가진다.
+            v_img.setAttribute("width", 100);
+            v_img.height = 100;
+            v_drop.appendChild(v_img);// 이걸 안하면 안보임
+
+            var v_li = document.createElement("li");
+            v_li.innerHTML = p_file.name;
+            v_fileList.appendChild(v_li);
+        }
+        v_fileReader.readAsDataURL(p_file);
+    }
+
+    // 파일 5개까지만 허락하고, 6개 이상 가져오면
+    // 5개까지만 허락됩니다. 메서지를 띄우도록 하기
+    function f_drop(){
+
+        event.preventDefault();
+        // 여기서만 필요한 작업을 해주면 끝
+        console.log(event.dataTransfer.files);
+        var v_files = event.dataTransfer.files;
+        if(v_files.length >=6){
+            alert("어딜!!! 5개까지만 올릴수 있어요");
+            return;
+        }
+        // var v_files = event.dataTransfer.files;
+        v_drop.innerHTML = "" // 내용 클리어
+        v_fileList.innerHTML = ""; // 파일리스토 클리엉
+        for(var i=0; i<v_files.length; i++) {
+            f_readFile(v_files[i]);
+        }
+    }
+    
+    // 어쩔수 없이 주변도 막아야함
+    window.addEventListener("dragover",function(){
+    event.preventDefault();
+    });
+    window.addEventListener("drop",function(){
+        event.preventDefault();
+    }) 
+
+</script>
+</body>
+</html>

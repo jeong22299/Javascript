@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/proStyle.css">
+    <style>
+                 #scene {
+             width: 95vw;
+             height: 40vh;
+             perspective: 2000px;
+             /* 1200px 떨어진 곳에서 바라보기  */
+             perspective-origin: bottom right;
+             
+         }
+         #obj3d {
+            position: relative;
+            top: 150px;
+            left: 700px;
+            width: 500px;
+            height: 500px;
+            transform-style: preserve-3d;  /* 3d로 표현하겠다는 의미 */
+            transform-origin: 100px 100px 0px; /* x , y, X*/
+         }
+         .common {
+             position: absolute;
+             width: 200px;
+             height: 200px;
+             /* border: 1px solid black; */
+             font-size: 6em;
+             text-align: center;
+             line-height: 200px; /* 글자 수직 가운데로*/
+         }
+         .cs_front {
+            transform: rotateY(0deg) translateX(240px);
+         }
+         .cs_right {
+            transform: rotateY(45deg) translateX(240px);
+         }
+         .cs_back {
+            transform: rotateY(90deg) translateX(240px);
+         }
+         .cs_left {
+            transform: rotateY(135deg) translateX(240px);
+         }
+         .cs_top {
+            transform: rotateY(180deg) translateX(240px);
+         }
+         .cs_bottom {
+            transform: rotateY(-45deg) translateX(240px);
+         }
+         .cs_bottom1 {
+            transform: rotateY(-90deg) translateX(240px);
+         }
+         .cs_bottom2 {
+            transform: rotateY(-135deg) translateX(240px);
+         }
+         #footer{
+            position: relative;
+            margin: 0 auto;
+            top: 300px;
+            left: 100px;
+         }
+    </style>
+</head>
+<body>
+<div id="header"> 
+    <div style="width: 40vw; margin: 0 auto; ">
+        <a href="start.html"><img src="./images/icon.jpg" width="200px" height="100px" style="border-radius: 50px;"></a>
+    </div>
+    <div style="width: 50vw; margin: 0 auto;">
+        <table style="width: 500px;">
+            <tr>
+                <td><a href="about.html" id="a">About</a></td>
+                <td><a href="collection.html" id="a">Collection</a></td>
+                <td><a href="gallery.html" id="a">Gallery</a></td>
+                <td><a href="contact.html" id="a">Contact</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- 헤더 -->
+<br>
+<br>
+<div id="scene">
+    <!-- 명량 극한직업 신과함께 국제시장 어벤져스 겨울왕국 아바타 베테랑 -->
+    <div id="obj3d">
+        <div class="common cs_front"><img src="images/겨울왕국.jpg" id="f" width="350" height="350"  onclick="f_disp(this)"></div>
+        <div class="common cs_right"><img src="images/국제시장.jpg" id="d" width="350" height="350"  onclick="f_disp(this)"></div>
+        <div class="common cs_back"><img src="images/극한직업.jpg" id="b" width="350" height="350"  onclick="f_disp(this)"></div>
+        <div class="common cs_left"><img src="images/명량.jpg" id="a" width="350" height="350"  onclick="f_disp(this)"></div>
+        <div class="common cs_top"><img src="images/베테랑.jpg" id="h" width="350" height="350"  onclick="f_disp(this)"></div>
+        <div class="common cs_bottom"><img src="images/아바타.jpg" id="g" width="350" height="350"  onclick="f_disp(this)"></div> 
+        <div class="common cs_bottom1"><img src="images/신과함께.jpeg" id="c" width="350" height="350"  onclick="f_disp(this)"></div> 
+        <div class="common cs_bottom2"><img src="images/어벤져스.png" id="e" width="350" height="350"  onclick="f_disp(this)"></div> 
+    </div>
+</div>
+<div id="id_disp" style="position: relative; left: 200px;" ></div>
+<!-- 푸터 -->
+<div id="footer"> 
+    <br><br>
+    <div id="copyRight">copyright  NextIT Corp. All rights reserved.</div>
+</div>
+</div>
+    <script>
+         // 회전 함수 
+        var v_obj3d = document.getElementById("obj3d");
+        var v_gak = 0;
+        window.onload=f_rot3d 
+         function f_rot3d() {
+            v_gak += 36%360;
+             v_obj3d.style.transform = "rotateY(" + v_gak + "deg)" ;
+            setTimeout(f_rot3d, 1000); 
+        }
+
+        var v_disp = document.getElementById("id_disp");
+        var v_scene = document.getElementById("scene");
+        // 선택할때 선택된 이미지 생성
+        function f_disp(p_this){
+            v_scene.style.opacity = "0.3";
+            v_scene.style.height = "0";
+            v_disp.innerHTML = "";    
+            // 이미지 생성
+            var v_img = document.createElement("img");
+            v_img.setAttribute("src",p_this.src);
+            v_img.setAttribute("width","400");
+            v_img.onclick = f_img
+            v_disp.appendChild(v_img);
+            //  종료 버튼 생성
+            var v_button = document.createElement("input");
+            v_button.setAttribute("type" , "button");
+            v_button.setAttribute("value" , "Generate");
+            v_disp.innerHTML += "<br>";
+            v_disp.appendChild(v_button);
+
+            v_button.onclick = f_but
+        // 종료 함수
+        function f_but() {
+                v_disp.innerHTML = "";
+                // 종료 버튼
+                var v_button2 = document.createElement("input");
+                v_button2.setAttribute("type" , "button");
+                v_button2.setAttribute("value" , "X");
+                v_disp.style.width = "100vw";
+                v_disp.style.height = "50vh";
+                v_disp.style.fontSiXe = "1.5em"
+                // thid 의 id 값을 받아섯 각 케이스마다 데이터 생성 함수 호출
+                if(p_this.id == "a"){ f_set(0); }
+                if(p_this.id == "b"){ f_set(1); }
+                if(p_this.id == "c"){ f_set(2); }
+                if(p_this.id == "d"){ f_set(3); }
+                if(p_this.id == "e"){ f_set(4); }
+                if(p_this.id == "f"){ f_set(5); }
+                if(p_this.id == "g"){ f_set(6); }
+                if(p_this.id == "h"){ f_set(7); }
+     
+                v_disp.innerHTML += "<br>";
+                v_disp.appendChild(v_button2);
+                v_button2.onclick = function() {
+                    f_recovey();
+                }
+            }
+        }
+
+
+        // 다시 화면으로 돌아가는 함수
+        function f_recovey() {
+            v_scene.style.opacity = "1";
+            v_scene.style.height = "40vh";
+             v_disp.innerHTML = "";
+        }
+        function f_img() {
+                v_scene.style.opacity = "1";
+                v_scene.style.height = "40vh";
+                v_disp.innerHTML = "";
+            }
+    // 명량 극한직업 신과함께 국제시장 어벤져스 겨울왕국 아바타 베테랑
+    //         function f_test2(p_json){
+    //     alert(p_json.name + "님" + " 나이는 " + p_json.age + "별명은" +
+    //       p_json.alias + " 꿈은" + p_json.dream + "입니다");
+    // }
+    // var v_json = { "안녕" : "하세요" , "저는" : [ { "바보" : "아님" , "멍청이" :"정답"} ] }
+    //     alert(v_json.안녕 + v_json.저는[0].바보); // 하세요 아님
+            v_JASON ={ "a0" : [ {"감독" : "김한민" , 
+                                                    "배우" : "최민식, 류승룡, 조진웅" , 
+                                                    "스크린샷" : ["1.jpg" , "2.jpg", "3.jpg", "4.jpg"]  }  ] ,
+                                    "a1" : [ {"감독" : "이병헌" , 
+                                                    "배우" : "류승룡, 이하늬, 진선규" , 
+                                                    "스크린샷" : ["1.jpg" , "2.jpg", "3.jpg", "4.jpg"]  }  ] ,
+                                    "a2" : [ {"감독" : "김용화" , 
+                                                    "배우" : "하정우, 차태현, 주지훈" , 
+                                                    "스크린샷" : ["1.jpg" , "2.jpg", "3.jpg", "4.jpg"]  }  ] ,
+                                    "a3" : [ {"감독" : "윤제균" , 
+                                                    "배우" : "황정민, 김윤진, 오달수" , 
+                                                    "스크린샷" : ["1.jpg" , "2.jpg", "3.jpg", "4.jpg"]  }  ] ,
+                                     "a4" : [ {"감독" : "안소니 루소, 조 루소" , 
+                                                    "배우" : "Robert Downey Jr. , Chris Evans" , 
+                                                    "스크린샷" : ["1.jpg" , "2.jpg", "3.jpg", "4.jpg"]  }  ] ,
+                                    "a5" : [ {"감독" : "크리스 벅, 제니퍼 리" , 
+                                                    "배우" : "엘사, 안나, 올라프" , 
+                                                    "스크린샷" : ["1.jpg" , "2.jpg", "3.jpg", "4.jpg"]  }  ] ,
+                                    "a6" : [ {"감독" : "제임스 카메론" , 
+                                                    "배우" : "샘 워싱턴, 조 샐다나" , 
+                                                    "스크린샷" : ["1.jpg" , "2.jpg", "3.jpg", "4.jpg"]  }  ] ,
+                                    "a7" : [ {"감독" : "류승완" , 
+                                                    "배우" : "황정민, 유아인, 유해진" , 
+                                                    "스크린샷" : ["1.jpg" , "2.jpg", "3.jpg", "4.jpg"]  }  ] ,
+        }
+        // 배열 호출 함수 
+        function f_set(p_num) {
+            // var v_div = document.createElement("div");
+            // v_div.setAttribute("id" , "disp");
+            if(p_num ==0) {
+                v_disp.innerHTML =  "감독 : " +  v_JASON.a0[0].감독 +"<br>배우: " + v_JASON.a0[p_num].배우 + "<br>"
+            }
+            if(p_num == 1){
+                v_disp.innerHTML =  "감독 : " +  v_JASON.a1[0].감독 +"<br>배우: " + v_JASON.a1[0].배우 + "<br>"
+            }
+            else if(p_num==2){
+                v_disp.innerHTML =  "감독 : " +  v_JASON.a2[0].감독 +"<br>배우: " + v_JASON.a2[0].배우 + "<br>"
+            }
+            else if(p_num==3){
+                v_disp.innerHTML =  "감독 : " +  v_JASON.a3[0].감독 +"<br>배우: " + v_JASON.a3[0].배우 + "<br>"
+            }
+            else if(p_num==4){
+                v_disp.innerHTML =  "감독 : " +  v_JASON.a4[0].감독 +"<br>배우: " + v_JASON.a4[0].배우 + "<br>"
+            }
+            else if(p_num==5){
+                v_disp.innerHTML =  "감독 : " +  v_JASON.a5[0].감독 +"<br>배우: " + v_JASON.a5[0].배우 + "<br>"
+            }
+            else if(p_num==6){
+                v_disp.innerHTML =  "감독 : " +  v_JASON.a6[0].감독 +"<br>배우: " + v_JASON.a6[0].배우 + "<br>"
+            }
+            else if(p_num==7){
+                v_disp.innerHTML =  "감독 : " +  v_JASON.a7[0].감독 +"<br>배우: " + v_JASON.a7[0].배우 + "<br>"
+            }
+            // 제이슨의 내용을 이미지로 생성
+                for(var i=1; i<=4; i++){
+                    var v_simg = document.createElement("img");
+                    var v_imgU = "images/"+p_num+"/" +i+".jpg"
+                    v_simg.setAttribute("src" ,  v_imgU);
+                    v_simg.setAttribute("width" , "300");
+                    v_simg.setAttribute("height" , "300");
+                    v_disp.appendChild(v_simg);
+                }
+            document.body.appendChild(v_disp);
+        }
+
+    </script>
+    </body>
+</html>

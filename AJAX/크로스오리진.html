@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="뉴스가져오기" onclick="f_check()">
+<script>
+    // Cross Origin 개념 엄청나게 중요(잊지마세용)
+    // 개념이 잘못되면 원래 안되는 일을 끝없이 무한반복
+    function f_check() {
+        var v_ajax = new XMLHttpRequest();
+        v_ajax.open("get", "https://news.google.com/rss/search?q=%EC%B0%A8%EC%9D%80%EC%9A%B0&hl=ko&gl=KR&ceid=KR:ko", true);
+        v_ajax.onreadystatechange = function(){
+            if(v_ajax.readyState == 4 && v_ajax.status == 200){
+                console.log(v_ajax.responseText);
+            }
+        }
+        v_ajax.send();
+    }
+</script>
+</body>
+</html>

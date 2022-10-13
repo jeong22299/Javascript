@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    //document.write가 자주쓰이고 길다면
+    function myprint(p_arg){
+        document.write(p_arg);
+    }
+
+    function prtRadio(p_munNum){
+        for(var i=1; i<=v_sunda; i++) {
+            myprint(i + "<input type=radio name=nm_mun"+p_munNum+" value=" + i + ">");
+        }
+    }
+
+    var v_munjesu= 10;
+    var v_sunda = 4;
+    // 랜덤 답 생성
+    var v_dap = [];
+    for(var i=1; i<=v_munjesu; i++){
+        v_dap.push(Math.ceil(Math.random()*v_sunda));
+    }
+    alert("확인하기 : " + v_dap)
+
+
+    for(var i=1; i<=v_munjesu; i++) {
+        myprint("<h4> 문제" + i +"</h4><hr>");
+        prtRadio(i);    // 이중 for문이 부담스러워서 밖으로 빼버림
+    }
+
+    document.write("<input type=button value=채점><br>");
+    document.write("맞은 갯수 : <input type=text value=''><br>");
+    document.write("점수 : <input type=text value=''>");
+</script>
+</body>
+</html>

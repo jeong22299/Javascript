@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/proStyle.css">
+    <style>
+        #collectionA {
+            text-align: center;
+        }
+        #collectionB {
+            height: 50px;
+            text-align: center;
+            font-size: 1.3em;
+        }
+        #collectionC {
+            height: 50px;
+            text-align: center;
+        }
+        #play {
+            position: relative;
+            top: 100px;
+            left: 100px;
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+        } 
+    </style>
+</head>
+<body>
+    <div id="header"> 
+        <div style="width: 40vw; margin: 0 auto; ">
+            <a href="start.html"><img src="./images/icon.jpg" width="200px" height="100px" style=" border-radius: 50px;"></a>
+        </div>
+        <div style="width: 50vw; margin: 0 auto;">
+            <table style="width: 500px;">
+                <tr>
+                    <td><a href="about.html" id="a">About</a></td>
+                    <td><a href="collection.html" id="a">Collection</a></td>
+                    <td><a href="gallery.html" id="a">Gallery</a></td>
+                    <td><a href="contact.html" id="a">Contact</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!-- 헤더 -->
+    <div id="collectionContent">
+        <br>
+        <br>
+        <table border="2" style="width: 95vw; height: 60vh; position: relative; left: 20px;" >
+            <tr>
+                <td> 
+                    <br>
+                    <div id="collection">
+                        <div id="collectionA">
+                            <a onclick="f_movie1()" ><img src="./images/명량.jpg" style="width: 200px;" alt="" id="id_img" ></a>
+                        </div>
+                        <div id="collectionB">
+                            <hr>
+                            <h4>명량</h4>
+                        </div>
+                        <div id="collectionC">
+                            <h5>관객 17,615,658명</h5>
+                        </div>
+                </td>
+                <td>
+                    <br>
+                    <div id="collectionA">
+                        <a onclick="f_movie2()"><img src="./images/극한직업.jpg" style="width: 200px;" alt=""></a>
+                    </div>
+                    <div id="collectionB">
+                        <hr>
+                        <h4>극한직업</h4>
+                    </div>
+                    <div id="collectionC">
+                        <h5>관객 16,266,240명</h5>
+                    </div>
+                </td>
+                <td>
+                    <br>
+                    <div id="collectionA">
+                        <a onclick="f_movie3()"><img src="./images/신과함께.jpeg" style="width: 200px;" alt=""></a>
+                    </div>
+                    <div id="collectionB">
+                        <hr>
+                        <h4>신과함께-죄와벌</h4>
+                    </div>
+                    <div id="collectionC">
+                        <h5>관객 14,411,755명</h5>
+                    </div>
+                </td>
+                <td>
+                    <br>
+                    <div id="collectionA">
+                        <a onclick="f_movie4()"><img src="./images/국제시장.jpg" style="width: 200px;" alt=""></a>
+                    </div>
+                    <div id="collectionB">
+                        <hr>
+                        <h4>국제시장</h4>
+                    </div>
+                    <div id="collectionC">
+                        <h5>관객 14,263,940명</h5>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <br>
+                    <div id="collectionA">
+                        <a onclick="f_movie5()"><img src="./images/어벤져스.png" style="width: 200px;" alt=""></a>
+                    </div>
+                    <div id="collectionB">
+                        <hr>
+                        <h4>어벤져스:엔드게임</h4>
+                    </div>
+                    <div id="collectionC">
+                        <h5>관객 13,934,604명</h5>
+                    </div>
+                </td>
+                <td>
+                    <br>
+                    <div id="collectionA">
+                        <a onclick="f_movie6()"><img src="./images/겨울왕국.jpg" style="width: 200px; height: 285px;" alt=""></a>
+                    </div>
+                    <div id="collectionB">
+                        <hr>
+                        <h4>겨울왕국 2</h4>
+                    </div>
+                    <div id="collectionC">
+                        <h5>관객 13,747,792명</h5>
+                    </div>
+                </td>
+                <td>
+                    <br>
+                    <div id="collectionA">
+                        <a onclick="f_movie7()"><img src="./images/아바타.jpg" style="width: 200px;" alt=""></a>
+                    </div>
+                    <div id="collectionB">
+                        <hr>
+                        <h4>아바타</h4>
+                    </div>
+                    <div id="collectionC">
+                        <h5>관객 13,486,963명</h5>
+                    </div>
+                </td>
+                <td>
+                    <br>
+                    <div id="collectionA">
+                        <a onclick="f_movie8()"><img src="./images/베테랑.jpg" style="width: 200px;" alt=""></a>
+                    </div>
+                    <div id="collectionB">
+                        <hr>
+                        <h4>베테랑</h4>
+                    </div>
+                    <div id="collectionC">
+                        <h5>관객 13,414,484명</h5>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="id_you"></div>
+    <!-- 푸터 -->
+    <div id="footer"> 
+        <br><br>
+        <div id="copyRight">copyright  NextIT Corp. All rights reserved.</div>
+    </div>
+    </div>
+    <script>
+        // 유튜브 주소 배열 정의
+        var v_movie = [
+                "https://www.youtube.com/embed/tetJhCkpGak?autoplay=1" ,
+                "https://www.youtube.com/embed/BaIRaKXrLPk?autoplay=1" ,
+                "https://www.youtube.com/embed/5O5PVvHTWRo?autoplay=1" ,
+                "https://www.youtube.com/embed/BBEDtovULHY?autoplay=1",
+                "https://www.youtube.com/embed/PVP5ZJuI57c?autoplay=1" ,
+                "https://www.youtube.com/embed/eSEs4B4H-EA?autoplay=1" ,
+                "https://www.youtube.com/embed/zS0BA8FnnKc?autoplay=1" ,
+                "https://www.youtube.com/embed/hcKp68DtBb0?autoplay=1" ,
+            ]
+        
+        var v_colection = document.getElementById("collectionContent");
+        var v_you = document.getElementById("id_you");
+        // 배열을 넣은 유튜브 실행 함수
+        function f_youtube(p_url) {
+            var v_button = document.createElement("input");
+            v_button.setAttribute("type" , "button");
+            v_button.setAttribute("value" , "X");
+            // 배경 회복 함수 
+            v_button.onclick = function() {
+                v_you.innerHTML = "";
+                v_colection.style.height = "1000px";
+                v_colection.style.opacity = "1";
+            }
+            // 아이프레임 생성 & 설정
+            var v_iframe = document.createElement("iframe");
+            v_iframe.setAttribute("width", "1000");
+            v_iframe.setAttribute("height", "1000");
+            v_iframe.setAttribute("allow" , "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture")
+            v_iframe.setAttribute("src", p_url);
+            v_iframe.setAttribute("frameborder", "0");
+            v_iframe.setAttribute("allowfullscreen" , "true");
+            v_you.innerHTML += "<br>";
+            v_you.innerHTML += "<br>";
+            v_you.appendChild(v_iframe);
+            v_you.innerHTML += "<br>";
+            v_you.appendChild(v_button);
+            v_you.style.position = "relative"
+            v_you.style.left = "200px"
+        }
+        // 유튜스 실행 함수
+        function f_play(p_movie) {
+            v_colection.style.height = "0";
+            v_colection.style.opacity = "0.1";
+            v_you.innerHTML= "";
+            f_youtube(p_movie);
+        }
+        //  케이스 나눔
+        function f_movie1() { f_play(v_movie[0])};
+        function f_movie2() { f_play(v_movie[1])};
+        function f_movie3() { f_play(v_movie[2])};
+        function f_movie4() { f_play(v_movie[3])};
+        function f_movie5() { f_play(v_movie[4])};
+        function f_movie6() { f_play(v_movie[5])};
+        function f_movie7() { f_play(v_movie[6])};
+        function f_movie8() { f_play(v_movie[7])};
+    
+    </script>
+</body>
+</html>

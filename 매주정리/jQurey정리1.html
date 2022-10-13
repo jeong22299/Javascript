@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    로<input type="checkbox" name="blink" id="roze">
+    제<input type="checkbox" name="blink" id="jenni">
+    리<input type="checkbox" name="blink" id="risa">
+    다<input type="checkbox" name="blink" id="dayoung" checked>
+<script>
+    // 향후 jQuery는 없어질 가능성이 높음!! 그러나 없어지는데는 시간이 오래 걸리고,
+    // 완전히 없어질지는 의문, 현실적으로 자바스크립트를 더 많이 사용하고
+    // jQuery를 조금씩 섞어 쓰는 것이 유리한 상황
+    // 브라우져 호환성 문제로 jQuery를 써야 유리한 부분도 남아있음
+
+    // 속성명=값 아닌 그냥 혼자 기술만 되는 것을 jQuery에선
+    // Property라고 부름, 원래 attr메소드로 대응하려다
+    // 애매하게 대응해서 버그도 생기고, 의미도 애매하다해서
+    // 별도 prop 매소드로 대응하게 됨.
+    // alert($("input[name=blink").eq(3).attr("checked"));  // ture/ false
+    alert($("input[name=blink").eq(3).prop("checked"));  // ture/ false
+
+    // jQuery기본 메소드, prop()
+    // html(), eq(), val(), attr(), css(), on("이벤트명", 콜백), 이벤트명(콜백함수), 
+    // empty(), addClass("클래스명"), removeClass("클래스명")
+    // $(function(){})  => DomContentLoaded 이벤트에 발생
+    // 일반 dom객체를 $()로 둘러싸면 jQuery객체로 바꿔서 jQuery메소드를 쓸 수 있다.
+    // ex) $(document.querySelector("#id")) => $divs = $("div");
+    // 성능상 주의 : 메소트 체인닝을 많이 쓰거나, 객체를 변수로 받아둬야 성능상
+    // 손해를 줄 일 수 있다.(jQuery내부에는 for문이 너무 많이 뺑뺑)
+
+</script>    
+</body>
+</html>

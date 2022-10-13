@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<!--이 페이지는 사용자에게 보여지는 내용은 없음.
+    지금부터 하는 내용은 사실 사기에 가까움 왜 그런지 생각해 보세요
+-->
+<script src ="gesilib.js"></script>
+<script>
+    // 넘어 온 값들
+    var v_title = request.getParameter("nm_title");
+    var v_writer = request.getParameter("nm_writer");
+    var v_level = request.getParameter("nm_level");
+    var v_cats = request.getParameterValues("nm_cat");
+    var v_content = request.getParameter("nm_content");
+
+    //localStorage에 저장하기
+    // var v_tblName = "gesiTB";
+    var v_arrTotal=[];
+    var v_pid = 1;  //없을 때 초기값 설정
+    // Primary-Key(검색을 편하게 -> 기본키(식별키))
+    // 넘어온 값들을 통째로 1개로 묶어서 저장하고 싶음.
+    // v_arrTotal = [];
+    
+    // 값을 맨처음 넣을때와 이미 값이 존재하고 있을 때를 구분
+    if(localStorage.getItem(v_tblName)){
+        v_arrTotal = JSON.parse(localStorage.getItem(v_tblName)); 
+        v_pid = v_arrTotal[v_arrTotal.length-1].pid + 1;
+    }
+
+    var v_gul = {}; // 묶어주기 위한 빈 객체(name-space로 봐도 무방)
+    v_gul.pid = v_pid   // 고유키를 한 개 만들어 주고싶음.
+    v_gul.title = v_title;
+    v_gul.writer = v_writer;
+    v_gul.level = v_level;
+    v_gul.cats = v_cats;
+    v_gul.content = v_content;
+    v_arrTotal.push(v_gul);// v_gul객체를 v_arrTotal배열에 담음
+    
+    localStorage.setItem(v_tblName, JSON.stringify(v_arrTotal));
+
+    // 쓰는 것 까지 확인 , 이제 어디로?
+    // 일단 괜히 사용자에게 잘 써졌다고 알려줌
+    alert("등록이 완료되었습니다. 목록으로 갑니다.")
+    location.replace("list.html");
+    // 오늘의 숙제 수단과 방밥을 가리지 않고(애자일기법)
+    // 쓰는 글들이 기존 배열에 추가되어 localStorage에 저장되도록 합니다.
+    // 힌트 : localStorage.getItem과 JSON.parse를 함께 잘 사용하면 됩니다. 출력문사용하면서!
+    // 수요일은 즐겁습니다.~~~
+</script>

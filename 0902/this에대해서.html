@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    // this(이것)가 무엇인가...
+    // 전역변수를 선언한 것은 window 객체의 속성을 추가한 것과 같고
+    // 전역함수를 선언한 것은 window객체의 메소드를 추가한 것과 같음
+    // 그저 앞에 window를 생략하고 사용해왔을뿐...
+// function f_check(){
+//     console.log("this: ", this); //? -> window
+// }
+window.f_check = function(){    // 위 함수 선언식과 동일함.
+    console.log("this: ", this);
+}
+// f_check(); // window.f_check()와 동일한 의미
+
+var v_dayoung = {"name": "윤다영", "problem":"공부안함"};
+v_dayoung.print = f_check; // 참조(reference)
+
+// this가 가리키는 값이 동적으로 바뀜
+
+f_check(); 
+v_dayoung.print(); // 호출, f_check가 호출됨
+
+// var sagiGGun = "이준혁"
+// window.sagiGGun = "이준혁"; // 윗라인과 동일함.
+// alert(window.sagiGGun);
+</script>
+

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>민정2드라마컬렉션</title>
+    <link rel="shortcut icon" href="./개인과제img/출드좋다.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="CSS.css">
+<style>
+    .ydy{
+        width:48%;
+        height:100%; /* 부모 기준임에 주의*/
+        /* border:1px solid red;   */
+    }
+    img{
+        width: 220px;
+        height: 320px;
+    }
+
+</style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="header">
+            <div id="main">
+                <a href="main.html"><img src="./개인과제img/메인1.jpg" style="width: 280px;  height: 92px;"></a>
+            </div>
+            <div id="main">
+                <table style=" width: 1000px;">
+                    <tr>
+                        <td><a href="collection.html" id="menu" >Collection</a></td>
+                        <td><a href="talk.html" id="menu"  >Talk</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div id="content" >
+            <div class="ydy">
+                <table border="2" style="width: 229px; height: 329px; position: relative; left: 40px; ">
+                    <tr>
+                        <td><a onclick="f_home1()"><img src="./개인과제img/우영우.jpg"></a></td>
+                        <td><a onclick="f_home2()"><img src="./개인과제img/빅마우스.jpg"></a></td>
+                        <td><a onclick="f_home3()"><img src="./개인과제img/현재는아름다워.jpg"></a></td>                  
+                        <td><a onclick="f_home4()"><img src="./개인과제img/으라차차내인생.jpg"></a></td>
+                        <td><a onclick="f_home5()"><img src="./개인과제img/황금가면.jpg"></a></td>
+                        <td><a onclick="f_home6()"><img src="./개인과제img/비밀의집.jpg"></a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="gallery.html"><img src="./개인과제img/빈센조jpg.jpg"></a></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table >
+            </div>
+        </div>    
+    </div>
+<script>
+    var v_site = ["http://ena.skylifetv.co.kr/bbs/board.php?bo_table=skydrama&wr_id=113&sca=%EC%B5%9C%EC%8B%A0",
+        "https://program.imbc.com/BIGMOUTH",
+        "https://program.kbs.co.kr/2tv/drama/beautifulnow/pc/index.html",
+        "https://program.kbs.co.kr/1tv/drama/bravomylife/pc/detail.html?smenu=c8e571",
+        "https://program.kbs.co.kr/2tv/drama/goldmask/pc/index.html",
+        "https://program.imbc.com/theSecretHouse",
+        "http://program.tving.com/tvn/tvnvincenzo"
+    ];
+    var v_you = document.getElementById("content");
+    function f_page(p_url){
+    var v_button = document.createElement("input");
+        v_button.setAttribute("type" , "button");
+        v_button.setAttribute("value" , "X");
+        v_button.onclick = function(){
+            location.reload();
+        }
+    
+    var v_iframe = document.createElement("iframe");
+    v_iframe.setAttribute("width", "1000");
+    v_iframe.setAttribute("height", "700");
+    v_iframe.setAttribute("src", p_url);
+    v_iframe.setAttribute("allowfullscreen" , "true");
+
+    v_you.appendChild(v_iframe);
+    v_you.appendChild(v_button);
+    v_you.style.position = "relative"
+    v_you.style.left = "200px"
+    }
+    function f_page2(p_url){
+        // v_you.style.opacity = "0.1";
+        v_you.innerHTML= "";
+        f_page(p_url);
+    }
+    function f_home1(){ f_page2(v_site[0])};
+    function f_home2(){ f_page2(v_site[1])};
+    function f_home3(){ f_page2(v_site[2])};
+    function f_home4(){ f_page2(v_site[3])};
+    function f_home5(){ f_page2(v_site[4])};
+    function f_home6(){ f_page2(v_site[5])};
+
+
+</script>
+</body>
+</html>

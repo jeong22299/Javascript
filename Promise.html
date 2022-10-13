@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    // Promise!!! 아주 중요!!!
+    // 자바의 try/catch와 비슷해 보이지만, Promise 기본적으로
+    // 비동기처리(자바의 thread)를 위해 만들어졌다는 것이 중요!!!!
+    // 나온 배경 : 비동기를 처리할 때 콜백함수를 많이 사용하는데
+    // 콜백 안에 콜백 그 안에 콜백 그안에 콜백식으로 프로그램 코드가 나오는
+    // 경우가 있어, 개발자들이 Hell Of Callback 이라 부르면서
+    // 개선하라고 해서 Promise가 나옴
+    // 처음엔 좋았으나, 최종적으로 조금 나아졌다고 평가.
+    // 다행인 건 직접 Promise를 작성할 일은 없음
+
+    // resolve, reject도 함수(콜백)
+    // 잘 처리되었을 때는 resolve에게 결과 값을 
+    // 잘 안되었을 때는 reject에게 에러 값을...
+    // 너무 어려움 잘 쓰려면 연습이 필요함.
+
+    const axios = {};  // 네임스페이스용(액시오스라고 읽음)
+    axios.get = function(p_url){
+        return new Promise((res, rej)=>{
+            let ajax = new XMLHttpRequest();
+            ajax.open("get", p_url, true);
+            ajax.onreadystatechange = ()=>{
+                if(ajax.readyState == 4 && ajax.status == 200){
+                    // 성공했을 때 처리(res/resolve)
+                    res(ajax.responseText);
+                }
+            }
+            ajax.send();
+        });
+    }
+
+    // 이렇게 Promise를 리턴해주는 라이브러리를 사용할 일이 많음
+    axios.get("mystyle.css").then((p_rslt)=>{console.log("성공:", p_rslt)})
+               .catch((p_error)=>{console.log("실패:",p_error)})
+               .finally(()=>{console.log("난무조건이야");}) 
+
+    axios.get("target.html").then((p_rslt)=>{console.log("성공:", p_rslt)})
+               .catch((p_error)=>{console.log("실패:",p_error)})
+               .finally(()=>{console.log("난무조건이야");}) 
+</script>
